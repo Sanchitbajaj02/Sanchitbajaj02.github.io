@@ -10,8 +10,12 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Sanchit Bajaj | Portfolio",
+  title: "Sanchit Bajaj - Portfolio",
   description: "Portfolio for Sanchit Bajaj",
+  referrer: "origin-when-cross-origin",
+  authors: [{ name: "Sanchit Bajaj" }],
+  applicationName: "Sanchit Bajaj - Portfolio",
+  robots: "all",
 };
 
 export default function RootLayout({
