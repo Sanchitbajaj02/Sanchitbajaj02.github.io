@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
-import { Roboto_Slab } from "next/font/google";
 import "@/styles/globals.css";
 import "@/styles/style.css";
+import type { Metadata } from "next";
+import { Roboto_Slab } from "next/font/google";
+import MainGridLayout from "@/components/layouts/MainGridLayout";
 
 export const metadata: Metadata = {
   title: "Sanchit Bajaj",
@@ -20,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`antialiased ${font.className}`}>{children}</body>
+      <body className={`antialiased ${font.className}`}>
+        <MainGridLayout>{children}</MainGridLayout>
+      </body>
     </html>
   );
 }

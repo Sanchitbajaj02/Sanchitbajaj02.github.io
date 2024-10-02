@@ -1,14 +1,12 @@
 import React from 'react'
-import { Navbar } from './Navbar'
 import { BookOpen, ChevronDown, CircleX, Eye, Send } from 'lucide-react'
 
 export default function MainContent() {
   return (
-    <div className="main-content">
+    <div >
 
-      <Navbar/>
 
-      <article className="about  active" data-page="about">
+      <article className="about" data-page="about">
 
         <header>
           <h2 className="h2 article-title">About me</h2>
@@ -302,7 +300,7 @@ export default function MainContent() {
 
 
 
-      <article className="resume" data-page="resume">
+      <article className="resume active" data-page="resume">
 
         <header>
           <h2 className="h2 article-title">Resume</h2>
@@ -491,7 +489,7 @@ export default function MainContent() {
 
 
 
-      <article className="portfolio" data-page="portfolio">
+      <article className="portfolio active" data-page="portfolio">
 
         <header>
           <h2 className="h2 article-title">Portfolio</h2>
