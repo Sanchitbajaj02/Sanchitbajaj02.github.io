@@ -1,19 +1,27 @@
-import React from "react";
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import {
   ChevronDown,
   Mail,
-  Phone,
+  // Phone,
   CalendarDays,
   MapPin,
   Linkedin,
   Github,
   Twitter,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function Sidebar() {
+  const [toggleData, setToggleData] = useState<boolean>(false);
+
+  const toggleSidebar = () => {
+    setToggleData((prev) => !prev);
+  };
+
   return (
-    <aside className="sidebar" data-sidebar>
+    <aside className={`sidebar ${toggleData && "active"}`}>
       <div className="sidebar-info">
         <figure className="avatar-box">
           <Image
@@ -29,10 +37,10 @@ export default function Sidebar() {
             Sanchit Bajaj
           </h1>
 
-          <p className="title">Web developer</p>
+          <p className="title">Full Stack developer</p>
         </div>
 
-        <button className="info_more-btn" data-sidebar-btn>
+        <button className="info_more-btn active" onClick={toggleSidebar}>
           <span>Show Contacts</span>
           <ChevronDown />
         </button>
@@ -44,22 +52,23 @@ export default function Sidebar() {
         <ul className="contacts-list">
           <li className="contact-item">
             <div className="icon-box">
-              {/* <ion-icon name="mail-outline"></ion-icon> */}
               <Mail />
             </div>
 
             <div className="contact-info">
               <p className="contact-title">Email</p>
 
-              <a href="mailto:richard@example.com" className="contact-link">
-                richard@example.com
+              <a
+                href="mailto:sanchitbajaj02@gmail.com"
+                className="contact-link"
+              >
+                sanchitbajaj02@gmail.com
               </a>
             </div>
           </li>
 
-          <li className="contact-item">
+          {/* <li className="contact-item">
             <div className="icon-box">
-              {/* <ion-icon name="phone-portrait-outline"></ion-icon> */}
               <Phone />
             </div>
 
@@ -70,31 +79,32 @@ export default function Sidebar() {
                 +1 (213) 352-2795
               </a>
             </div>
-          </li>
+          </li> */}
 
           <li className="contact-item">
             <div className="icon-box">
-              {/* <ion-icon name="calendar-outline"></ion-icon> */}
               <CalendarDays />
             </div>
 
             <div className="contact-info">
-              <p className="contact-title">Birthday</p>
+              <p className="contact-title">Schedule a call</p>
 
-              <time dateTime="1982-06-23">June 23, 1982</time>
+              {/* <time dateTime="1982-06-23">June 23, 1982</time> */}
+              <Link href="https://topmate.io/sanchitbajaj02" target="_blank" className="contact-link">
+                topmate.io/sanchitbajaj02
+              </Link>
             </div>
           </li>
 
           <li className="contact-item">
             <div className="icon-box">
-              {/* <ion-icon name="location-outline"></ion-icon> */}
               <MapPin />
             </div>
 
             <div className="contact-info">
               <p className="contact-title">Location</p>
 
-              <address>Sacramento, California, USA</address>
+              <address>Delhi, India</address>
             </div>
           </li>
         </ul>
@@ -103,24 +113,21 @@ export default function Sidebar() {
 
         <ul className="social-list">
           <li className="social-item">
-            <a href="#" className="social-link">
-              {/* <ion-icon name="logo-facebook"></ion-icon> */}
+            <Link href="https://www.linkedin.com/in/sanchitbajaj02" target="_blank" className="social-link">
               <Linkedin />
-            </a>
+            </Link>
           </li>
 
           <li className="social-item">
-            <a href="#" className="social-link">
-              {/* <ion-icon name="logo-twitter"></ion-icon> */}
+            <Link href="https://github.com/sanchitbajaj02" target="_blank" className="social-link">
               <Github />
-            </a>
+            </Link>
           </li>
 
           <li className="social-item">
-            <a href="#" className="social-link">
-              {/* <ion-icon name="logo-instagram"></ion-icon> */}
+            <Link href="https://x.com/solitrix02" target="_blank" className="social-link">
               <Twitter />
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

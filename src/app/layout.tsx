@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const font = Roboto_Slab({
-  weight: ["400", "500", "600", "800"],
+  weight: ["300","400", "500", "600", "800"],
   subsets: ["latin"],
 });
 
