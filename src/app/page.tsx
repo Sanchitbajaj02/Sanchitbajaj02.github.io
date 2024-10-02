@@ -9,20 +9,21 @@ export default function HomePage() {
         </header>
 
         <section className="about-text">
+          <h4 className="h4 timeline-item-title">👋 Hey, I'm Sanchit!</h4>
           <p>
-            I'm Creative Director and UI/UX Designer from Sydney, Australia,
-            working in web development and print media. I enjoy turning complex
-            problems into simple, beautiful and intuitive designs.
+            A Computer Science Engineering graduate with over 2 years of
+            hands-on experience in Web and Mobile App Development. I specialize
+            in designing and developing efficient, scalable, and user-centric
+            applications using the latest technologies.
           </p>
-
-          <p>
+          {/* <p>
             My job is to build your website so that it is functional and
             user-friendly but at the same time attractive. Moreover, I add
             personal touch to your product and make sure that is eye-catching
             and easy to use. My aim is to bring across your message and identity
             in the most creative way. I created web design for many famous brand
             companies.
-          </p>
+          </p> */}
         </section>
 
         <section className="service">
@@ -80,7 +81,7 @@ export default function HomePage() {
                 <h4 className="h4 service-item-title">Mobile apps</h4>
 
                 <p className="service-item-text">
-                  Professional development of applications for iOS and Android.
+                  Professional development of applications for Android and iOS.
                 </p>
               </div>
             </li>
