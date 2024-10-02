@@ -5,16 +5,22 @@ import { Roboto_Slab } from "next/font/google";
 import MainGridLayout from "@/components/layouts/MainGridLayout";
 
 export const metadata: Metadata = {
-  title: "Sanchit Bajaj - Portfolio",
+  title: "Home - Sanchit Bajaj",
   description:
-    "Your friendly neighborhood full stack developer, making rocks talk — on my Rhythm.",
-
-  applicationName: "Sanchit Bajaj - Portfolio",
+    "Your friendly neighborhood full-stack developer, making rocks talk — on my own rhythm.",
+  keywords: [
+    "Sanchit Bajaj",
+    "Sanchit developer",
+    "sanchitbajaj02",
+    "solitrix02",
+    "Sanchit dev",
+  ],
+  applicationName: "Home - Sanchit Bajaj",
   authors: {
     name: "Sanchit Bajaj",
   },
   appleWebApp: {
-    title: "Sanchit Bajaj - Portfolio",
+    title: "Home - Sanchit Bajaj",
     statusBarStyle: "default",
     capable: true,
   },

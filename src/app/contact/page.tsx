@@ -1,4 +1,9 @@
 import { ContactForm } from "@/components/ContactForm";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact - Sanchit Bajaj",
+};
 
 export default function ContactPage() {
   return (
