@@ -27,8 +27,8 @@ export default function Sidebar() {
           <Image
             src="/assets/images/profile-pic.png"
             alt="Sanchit Bajaj"
-            width={200}
-            height={200}
+            width={250}
+            height={250}
           />
         </figure>
 

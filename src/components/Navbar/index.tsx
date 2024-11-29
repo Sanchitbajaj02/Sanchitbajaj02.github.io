@@ -38,16 +38,14 @@ export const Navbar = () => {
           navItems.length > 0 &&
           navItems.map((item: NavItem) => {
             return (
-              <>
-                <li className="navbar-item" key={item.label}>
-                  <Link
-                    href={item.slug}
-                    className={`navbar-link ${item.slug === path && "active"}`}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              </>
+              <li className="navbar-item" key={item.label}>
+                <Link
+                  href={item.slug}
+                  className={`navbar-link ${item.slug === path && "active"}`}
+                >
+                  {item.label}
+                </Link>
+              </li>
             );
           })}
       </ul>

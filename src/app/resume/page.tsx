@@ -42,6 +42,15 @@ export default function ResumePage() {
         <h2 className="h2 article-title">Resume</h2>
       </header>
 
+      {/* <a
+        className="form-btn"
+        style={{ margin: 0, fontSize: 12 }}
+        role="button"
+        download
+      >
+        Download Resume
+      </a> */}
+
       <section className="timeline">
         <div className="title-wrapper">
           <div className="icon-box">
