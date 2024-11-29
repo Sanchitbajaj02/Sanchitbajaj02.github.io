@@ -355,13 +355,13 @@ main {
 } */
 
 .avatar-box {
-  /* border-radius: 30px; */
   border-radius: 50%;
   border: 1px solid var(--jet);
 }
 
 .avatar-box img {
-  width: 70px;
+  width: 80px;
+  border-radius: 50%;
 }
 
 .info-content .name {
@@ -1267,7 +1267,7 @@ main {
 
 textarea.form-input {
   min-height: 100px;
-  height: 120px;
+  /* height: 120px; */
   max-height: 200px;
   resize: vertical;
   margin-bottom: 25px;
