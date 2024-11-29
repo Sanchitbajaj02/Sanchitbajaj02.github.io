@@ -66,9 +66,12 @@ export const ContactForm = () => {
       <textarea
         name="message"
         className="form-input"
-        placeholder="Your Message"
+        placeholder="Write your message in 100 words..."
         required
-      ></textarea>
+        minLength={5}
+        maxLength={1000}
+        rows={5}
+      />
 
       <button className="form-btn" type="submit">
         <Send />
