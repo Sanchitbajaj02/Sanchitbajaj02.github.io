@@ -1,6 +1,26 @@
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { request } from "graphql-request";
+import { API_ENDPOINT, GET_ALL_POSTS, NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST } from "@/lib/graphql";
+import { PostsResponse, Post } from "@/types";
 
-export default function BlogPage() {
+const fetchPosts = async (): Promise<PostsResponse | null> => {
+  "use server";
+  const data: PostsResponse = await request(API_ENDPOINT, GET_ALL_POSTS);
+
+  if (!data || !data.publication || !data.publication.posts) {
+    return null;
+  }
+
+  return data;
+};
+
+export default async function BlogPage() {
+  const apiData: PostsResponse | null = await fetchPosts();
+
+  const posts = apiData?.publication.posts.edges;
+
   return (
     <article className="blog active" data-page="blog">
       <header>
@@ -9,187 +29,54 @@ export default function BlogPage() {
 
       <section className="blog-posts">
         <ul className="blog-posts-list">
-          <li className="blog-post-item">
-            <a href="#">
-              <figure className="blog-banner-box">
-                <img
-                  src="/assets/images/blog-1.jpg"
-                  alt="Design conferences in 2022"
-                  loading="lazy"
-                />
-              </figure>
+          {posts &&
+            posts.map((post: Post, idx: number) => {
+              return (
+                <li className="blog-post-item" key={idx}>
+                  <Link
+                    href={`https://${NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST}/${post.node.slug}`}
+                    target="_blank"
+                    tabIndex={1}
+                  >
+                    <figure className="blog-banner-box">
+                      <Image
+                        src={post.node.coverImage.url}
+                        alt={post.node.title}
+                        width={2000}
+                        height={1000}
+                        loading="lazy"
+                      />
+                    </figure>
 
-              <div className="blog-content">
-                <div className="blog-meta">
-                  <p className="blog-category">Design</p>
+                    <div className="blog-content">
+                      <div className="blog-meta">
+                        <p className="blog-category">Published on</p>
 
-                  <span className="dot"></span>
+                        {/* <span className="dot"></span> */}
 
-                  <time dateTime="2022-02-23">Fab 23, 2022</time>
-                </div>
+                        <time dateTime={post.node.publishedAt}>
+                          {new Date(post.node.publishedAt).toLocaleDateString(
+                            "en-IN",
+                            {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            }
+                          )}
+                        </time>
+                      </div>
 
-                <h3 className="h3 blog-item-title">
-                  Design conferences in 2022
-                </h3>
+                      <h3 className="h3 blog-item-title">{post.node.title}</h3>
 
-                <p className="blog-text">
-                  Veritatis et quasi architecto beatae vitae dicta sunt,
-                  explicabo.
-                </p>
-              </div>
-            </a>
-          </li>
-
-          <li className="blog-post-item">
-            <a href="#">
-              <figure className="blog-banner-box">
-                <img
-                  src="/assets/images/blog-2.jpg"
-                  alt="Best fonts every designer"
-                  loading="lazy"
-                />
-              </figure>
-
-              <div className="blog-content">
-                <div className="blog-meta">
-                  <p className="blog-category">Design</p>
-
-                  <span className="dot"></span>
-
-                  <time dateTime="2022-02-23">Fab 23, 2022</time>
-                </div>
-
-                <h3 className="h3 blog-item-title">
-                  Best fonts every designer
-                </h3>
-
-                <p className="blog-text">
-                  Sed ut perspiciatis, nam libero tempore, cum soluta nobis est
-                  eligendi.
-                </p>
-              </div>
-            </a>
-          </li>
-
-          <li className="blog-post-item">
-            <a href="#">
-              <figure className="blog-banner-box">
-                <img
-                  src="/assets/images/blog-3.jpg"
-                  alt="Design digest #80"
-                  loading="lazy"
-                />
-              </figure>
-
-              <div className="blog-content">
-                <div className="blog-meta">
-                  <p className="blog-category">Design</p>
-
-                  <span className="dot"></span>
-
-                  <time dateTime="2022-02-23">Fab 23, 2022</time>
-                </div>
-
-                <h3 className="h3 blog-item-title">Design digest #80</h3>
-
-                <p className="blog-text">
-                  Excepteur sint occaecat cupidatat no proident, quis nostrum
-                  exercitationem ullam corporis suscipit.
-                </p>
-              </div>
-            </a>
-          </li>
-
-          <li className="blog-post-item">
-            <a href="#">
-              <figure className="blog-banner-box">
-                <img
-                  src="/assets/images/blog-4.jpg"
-                  alt="UI interactions of the week"
-                  loading="lazy"
-                />
-              </figure>
-
-              <div className="blog-content">
-                <div className="blog-meta">
-                  <p className="blog-category">Design</p>
-
-                  <span className="dot"></span>
-
-                  <time dateTime="2022-02-23">Fab 23, 2022</time>
-                </div>
-
-                <h3 className="h3 blog-item-title">
-                  UI interactions of the week
-                </h3>
-
-                <p className="blog-text">
-                  Enim ad minim veniam, consectetur adipiscing elit, quis
-                  nostrud exercitation ullamco laboris nisi.
-                </p>
-              </div>
-            </a>
-          </li>
-
-          <li className="blog-post-item">
-            <a href="#">
-              <figure className="blog-banner-box">
-                <img
-                  src="/assets/images/blog-5.jpg"
-                  alt="The forgotten art of spacing"
-                  loading="lazy"
-                />
-              </figure>
-
-              <div className="blog-content">
-                <div className="blog-meta">
-                  <p className="blog-category">Design</p>
-
-                  <span className="dot"></span>
-
-                  <time dateTime="2022-02-23">Fab 23, 2022</time>
-                </div>
-
-                <h3 className="h3 blog-item-title">
-                  The forgotten art of spacing
-                </h3>
-
-                <p className="blog-text">
-                  Maxime placeat, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.
-                </p>
-              </div>
-            </a>
-          </li>
-
-          <li className="blog-post-item">
-            <a href="#">
-              <figure className="blog-banner-box">
-                <img
-                  src="/assets/images/blog-6.jpg"
-                  alt="Design digest #79"
-                  loading="lazy"
-                />
-              </figure>
-
-              <div className="blog-content">
-                <div className="blog-meta">
-                  <p className="blog-category">Design</p>
-
-                  <span className="dot"></span>
-
-                  <time dateTime="2022-02-23">Fab 23, 2022</time>
-                </div>
-
-                <h3 className="h3 blog-item-title">Design digest #79</h3>
-
-                <p className="blog-text">
-                  Optio cumque nihil impedit uo minus quod maxime placeat, velit
-                  esse cillum.
-                </p>
-              </div>
-            </a>
-          </li>
+                      {/* <p className="blog-text">
+                        Veritatis et quasi architecto beatae vitae dicta sunt,
+                        explicabo.
+                      </p> */}
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
         </ul>
       </section>
     </article>

@@ -16,10 +16,10 @@ const navItems = [
   //   label: "Portfolio",
   //   slug: "/portfolio",
   // },
-  // {
-  //   label: "Blog",
-  //   slug: "/blog",
-  // },
+  {
+    label: "Blog",
+    slug: "/blog",
+  },
   {
     label: "Contact",
     slug: "/contact",
