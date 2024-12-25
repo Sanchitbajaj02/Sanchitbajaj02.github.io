@@ -77,13 +77,22 @@ export default function ResumePage() {
               <li className="list-disc">
                 Streamlined and optimized the software workflow by migrating
                 data processing modules to PostgreSQL functions, resulting in a
-                70% reduction in processing time. Exposed the tightly coupled
-                internal APIs to integrate into OIM application of their own.
+                70% reduction in processing time.
+              </li>
+              <li className="list-disc">
+                Exposed the tightly coupled internal APIs for user based access
+                to integrate into OIM application of their for fast and
+                centralized user management for the client 'Airtel Africa'.
               </li>
               <li className="list-disc">
                 Identified and mitigated critical security vulnerabilities,
-                significantly improving product quality and boosting overall
-                client satisfaction.
+                improving product quality by 50% and boosting overall client
+                satisfaction.
+              </li>
+              <li className="list-disc">
+                Created the Service Order Tracker for the client 'Airtel
+                Africa', streamlining order management with efficient asset
+                handling and extensive role based access control.
               </li>
             </ul>
           </li>
