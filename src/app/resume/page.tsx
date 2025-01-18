@@ -1,4 +1,4 @@
-import { BookOpen } from "lucide-react";
+import { BookOpen, CircleCheckBig, Download } from "lucide-react";
 import type { Metadata } from "next";
 import React from "react";
 
@@ -16,16 +16,16 @@ const skills = [
     percentage: "85%",
   },
   {
-    skillName: "Web designing",
+    skillName: "Blockchain development",
+    percentage: "85%",
+  },
+  {
+    skillName: "UI/UX designing",
     percentage: "90%",
   },
   {
-    skillName: "System Design and Optimizations",
+    skillName: "System Design and Optimization",
     percentage: "92%",
-  },
-  {
-    skillName: "Content Creation",
-    percentage: "75%",
   },
   {
     skillName: "Personal Branding",
@@ -49,6 +49,20 @@ const SkillBadge = ({ skill }: { skill: SkillItem }) => {
         ></div>
       </div>
     </li>
+  );
+};
+
+const SkillChip = ({ skill }: { skill: SkillItem }) => {
+  return (
+    <div className="service-item">
+      <div className="service-content-box flex flex-row items-center justify-between w-full">
+        <h5 className="h5">{skill.skillName}</h5>
+
+        <div className="icon-box">
+          <CircleCheckBig />
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -244,8 +258,14 @@ const TechStack = () => {
 export default function ResumePage() {
   return (
     <article className="resume active" data-page="resume">
-      <header>
-        <h2 className="h2 article-title">Resume</h2>
+      <header className="flex flex-row gap-4">
+        <h2 className="h2 article-title">My Resume</h2>
+
+        <div className="icon-box">
+          <a href="docs/Sanchit's%20resume.pdf" title="Download Resume" role="button" target="_blank">
+            <Download />
+          </a>
+        </div>
       </header>
 
       {/* <a
@@ -430,11 +450,11 @@ export default function ResumePage() {
       <section className="skill">
         <h3 className="h3 skills-title">My skills</h3>
 
-        <ul className="skills-list content-card">
+        <ul className="service-list">
           {skills &&
             skills.length > 0 &&
             skills.map((skill: SkillItem) => (
-              <SkillBadge key={skill.skillName} skill={skill} />
+              <SkillChip key={skill.skillName} skill={skill} />
             ))}
         </ul>
       </section>

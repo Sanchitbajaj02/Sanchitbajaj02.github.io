@@ -1519,7 +1519,7 @@ textarea.form-input::-webkit-resizer {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 18px;
-    padding: 30px;
+    /* padding: 30px; */
   }
 
   .service-icon-box {

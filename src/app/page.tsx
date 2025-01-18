@@ -33,8 +33,7 @@ export default function HomePage() {
             <li className="service-item">
               <div className="service-icon-box">
                 <img
-                  src="/assets/images/icon-design.svg
-        "
+                  src="/assets/images/icon-design.svg"
                   alt="design icon"
                   width="40"
                 />
