@@ -6,8 +6,14 @@ export type Post = {
     title: string;
     publishedAt: string;
     slug: string;
+    tags: Tag[]
   };
 };
+
+export type Tag = {
+  id: string;
+  name: string;
+}
 
 export type PostsResponse = {
   publication: {

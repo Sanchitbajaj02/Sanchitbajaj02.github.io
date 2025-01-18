@@ -2,8 +2,14 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { request } from "graphql-request";
-import { API_ENDPOINT, GET_ALL_POSTS, NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST } from "@/lib/graphql";
-import { PostsResponse, Post } from "@/types";
+import {
+  API_ENDPOINT,
+  GET_ALL_POSTS,
+  NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST,
+} from "@/lib/graphql";
+import { PostsResponse, Post, Tag } from "@/types";
+
+export const revalidate = 1000 * 60 * 60 * 24; // revalidate at most every day
 
 const fetchPosts = async (): Promise<PostsResponse | null> => {
   "use server";
@@ -24,7 +30,7 @@ export default async function BlogPage() {
   return (
     <article className="blog active" data-page="blog">
       <header>
-        <h2 className="h2 article-title">Blog</h2>
+        <h2 className="h2 article-title">My Blogs</h2>
       </header>
 
       <section className="blog-posts">
@@ -66,12 +72,17 @@ export default async function BlogPage() {
                         </time>
                       </div>
 
-                      <h3 className="h3 blog-item-title">{post.node.title}</h3>
+                      <h4 className="h4 blog-item-title">{post.node.title}</h4>
 
-                      {/* <p className="blog-text">
-                        Veritatis et quasi architecto beatae vitae dicta sunt,
-                        explicabo.
-                      </p> */}
+                      <div className="flex flex-row gap-2 flex-wrap">
+                      {post.node.tags && post.node.tags.map((tag: Tag) => {
+                        return (
+                          <small className="blog-text" key={tag.id}>
+                            #{tag.name} 
+                          </small>
+                        );
+                      })}
+                      </div>
                     </div>
                   </Link>
                 </li>

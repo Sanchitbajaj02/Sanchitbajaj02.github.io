@@ -8,7 +8,7 @@ export const GET_ALL_POSTS = gql`
   query PostsByPublication {
     publication(host: "${NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST}") {
       id
-      posts(first: 6) {
+      posts(first: 10) {
         edges {
           node {
             id
@@ -22,6 +22,10 @@ export const GET_ALL_POSTS = gql`
             }
             publishedAt
             slug
+            tags {
+              id
+              name
+            }
           }
         }
       }
