@@ -1,4 +1,44 @@
-import { CircleX } from "lucide-react";
+// import { CircleX } from "lucide-react";
+
+export type InfoCard = {
+  cardTitle: string;
+  cardDescription: string;
+  cardImage: string;
+};
+
+/*
+/assets/images/icon-design.svg
+/assets/images/icon-dev.svg
+/assets/images/icon-app.svg
+/assets/images/icon-photo.svg
+*/
+
+const whatIamDoing: InfoCard[] = [
+  {
+    cardTitle: "Web Design",
+    cardDescription:
+      "Crafting visually stunning, user-friendly designs that leave an impact.",
+    cardImage: "/assets/images/icon-design.svg",
+  },
+  {
+    cardTitle: "Frontend Development",
+    cardDescription:
+      "Creating interactive and responsive user interfaces with modern frameworks.",
+    cardImage: "/assets/images/icon-dev.svg",
+  },
+  {
+    cardTitle: "Backend development",
+    cardDescription:
+      "Designing secure, scalable servers, APIs, and database solutions.",
+    cardImage: "/assets/images/icon-dev.svg",
+  },
+  {
+    cardTitle: "Mobile Development",
+    cardDescription:
+      "Building cross-platform apps for seamless experiences on iOS and Android.",
+    cardImage: "/assets/images/icon-app.svg",
+  },
+];
 
 export default function HomePage() {
   return (
@@ -9,9 +49,9 @@ export default function HomePage() {
         </header>
 
         <section className="about-text">
-          <h4 className="h4 timeline-item-title">👋 Hey, I'm Sanchit!</h4>
-          <p>
-            A Computer Science Engineering graduate with over 2 years of
+          {/* <h4 className="h4 timeline-item-title">👋 Hey, I'm Sanchit!</h4> */}
+          <p className="timeline-item-title">
+          👋 Hey, I'm Sanchit Bajaj! A Computer Science Engineering graduate with over 2 years of
             hands-on experience in Web and Mobile App Development. I specialize
             in designing and developing efficient, scalable, and user-centric
             applications using the latest technologies.
@@ -30,83 +70,30 @@ export default function HomePage() {
           <h3 className="h3 service-title">What i'm doing</h3>
 
           <ul className="service-list">
-            <li className="service-item">
-              <div className="service-icon-box">
-                <img
-                  src="/assets/images/icon-design.svg"
-                  alt="design icon"
-                  width="40"
-                />
-              </div>
+            {whatIamDoing.map((card: InfoCard, idx: number) => {
+              return (
+                <li className="service-item" key={idx}>
+                  <div className="service-icon-box">
+                    <img
+                      src={card.cardImage}
+                      alt="design icon"
+                      width={50}
+                      height={50}
+                    />
+                  </div>
 
-              <div className="service-content-box">
-                <h4 className="h4 service-item-title">Web design</h4>
+                  <div className="service-content-box">
+                    <h4 className="h4 service-item-title">{card.cardTitle}</h4>
 
-                <p className="service-item-text">
-                  The most modern and high-quality design made at a professional
-                  level.
-                </p>
-              </div>
-            </li>
-
-            <li className="service-item">
-              <div className="service-icon-box">
-                <img
-                  src="/assets/images/icon-dev.svg"
-                  alt="Web development icon"
-                  width="40"
-                />
-              </div>
-
-              <div className="service-content-box">
-                <h4 className="h4 service-item-title">Web development</h4>
-
-                <p className="service-item-text">
-                  High-quality development of sites at the professional level.
-                </p>
-              </div>
-            </li>
-
-            <li className="service-item">
-              <div className="service-icon-box">
-                <img
-                  src="/assets/images/icon-app.svg"
-                  alt="mobile app icon"
-                  width="40"
-                />
-              </div>
-
-              <div className="service-content-box">
-                <h4 className="h4 service-item-title">Mobile apps</h4>
-
-                <p className="service-item-text">
-                  Professional development of applications for Android and iOS.
-                </p>
-              </div>
-            </li>
-
-            <li className="service-item">
-              <div className="service-icon-box">
-                <img
-                  src="/assets/images/icon-photo.svg"
-                  alt="camera icon"
-                  width="40"
-                />
-              </div>
-
-              <div className="service-content-box">
-                <h4 className="h4 service-item-title">Photography</h4>
-
-                <p className="service-item-text">
-                  I make high-quality photos of any category at a professional
-                  level.
-                </p>
-              </div>
-            </li>
+                    <p className="service-item-text">{card.cardDescription}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </section>
 
-        <section className="testimonials">
+        {/* <section className="testimonials">
           <h3 className="h3 testimonials-title">Testimonials</h3>
 
           <ul className="testimonials-list has-scrollbar">
@@ -276,9 +263,9 @@ export default function HomePage() {
               </div>
             </div>
           </section>
-        </div>
+        </div> */}
 
-        <section className="clients">
+        {/* <section className="clients">
           <h3 className="h3 clients-title">Clients</h3>
 
           <ul className="clients-list has-scrollbar">
@@ -318,7 +305,7 @@ export default function HomePage() {
               </a>
             </li>
           </ul>
-        </section>
+        </section> */}
       </article>
     </>
   );

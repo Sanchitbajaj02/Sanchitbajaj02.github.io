@@ -56,11 +56,12 @@ export default function Sidebar() {
             </div>
 
             <div className="contact-info">
-              <p className="contact-title">Email</p>
+              <p className="contact-title">Email Address</p>
 
               <a
                 href="mailto:sanchitbajaj02@gmail.com"
                 className="contact-link"
+                title="sanchitbajaj02@gmail.com"
               >
                 sanchitbajaj02@gmail.com
               </a>
@@ -90,7 +91,7 @@ export default function Sidebar() {
               <p className="contact-title">Schedule a call</p>
 
               {/* <time dateTime="1982-06-23">June 23, 1982</time> */}
-              <Link href="https://topmate.io/sanchitbajaj02" target="_blank" className="contact-link">
+              <Link href="https://topmate.io/sanchitbajaj02" target="_blank" className="contact-link" title="@sanchitbajaj02">
                 topmate.io/sanchitbajaj02
               </Link>
             </div>
@@ -113,19 +114,19 @@ export default function Sidebar() {
 
         <ul className="social-list">
           <li className="social-item">
-            <Link href="https://www.linkedin.com/in/sanchitbajaj02" target="_blank" className="social-link">
+            <Link href="https://www.linkedin.com/in/sanchitbajaj02" target="_blank" className="social-link" title="@sanchitbajaj02">
               <Linkedin />
             </Link>
           </li>
 
           <li className="social-item">
-            <Link href="https://github.com/sanchitbajaj02" target="_blank" className="social-link">
+            <Link href="https://github.com/sanchitbajaj02" target="_blank" className="social-link" title="@sanchitbajaj02">
               <Github />
             </Link>
           </li>
 
           <li className="social-item">
-            <Link href="https://x.com/solitrix02" target="_blank" className="social-link">
+            <Link href="https://x.com/solitrix02" target="_blank" className="social-link" title="@solitrix02">
               <Twitter />
             </Link>
           </li>
