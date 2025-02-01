@@ -9,7 +9,7 @@ import {
 } from "@/lib/graphql";
 import { PostsResponse, Post, Tag } from "@/types";
 
-export const revalidate = 1000 * 60 * 60 * 24; // revalidate at most every day
+export const revalidate = 86400; // revalidate at most every day
 
 const fetchPosts = async (): Promise<PostsResponse | null> => {
   "use server";
