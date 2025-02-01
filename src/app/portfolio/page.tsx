@@ -1,7 +1,124 @@
+"use client";
 import { ChevronDown, Eye } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Project, Tab } from "@/types";
+
+const tabList: Tab[] = [
+  {
+    id: "all",
+    name: "All",
+  },
+  {
+    id: "web-design",
+    name: "Web design",
+  },
+  {
+    id: "applications",
+    name: "Applications",
+  },
+  {
+    id: "web-development",
+    name: "Web development",
+  },
+];
+
+const projectList: Project[] = [
+  {
+    tabId: "web-development",
+    title: "Finance",
+    image: "/assets/images/project-1.jpg",
+    url: "https://www.google.com",
+  },
+  {
+    tabId: "web-development",
+    title: "Orizon",
+    image: "/assets/images/project-2.png",
+    url: "https://www.google.com",
+  },
+  {
+    tabId: "web-design",
+    title: "Fundo",
+    image: "/assets/images/project-3.jpg",
+    url: "https://www.google.com",
+  },
+  {
+    tabId: "applications",
+    title: "Brawlhalla",
+    image: "/assets/images/project-4.png",
+    url: "https://www.google.com",
+  },
+  {
+    tabId: "web-design",
+    title: "DSM.",
+    image: "/assets/images/project-5.png",
+    url: "https://www.google.com",
+  },
+  {
+    tabId: "web-design",
+    title: "MetaSpark",
+    image: "/assets/images/project-6.png",
+    url: "https://www.google.com",
+  },
+  {
+    tabId: "web-development",
+    title: "Summary",
+    image: "/assets/images/project-7.png",
+    url: "https://www.google.com",
+  },
+  {
+    tabId: "applications",
+    title: "Task Manager",
+    image: "/assets/images/project-8.jpg",
+    url: "https://www.google.com",
+  },
+  {
+    tabId: "web-development",
+    title: "Arrival",
+    image: "/assets/images/project-9.png",
+    url: "https://www.google.com",
+  },
+];
+
+function PortfolioCard({ projectItem }: { projectItem: Project }) {
+  return (
+    <li
+      className="project-item active"
+      data-filter-item
+      data-category={projectItem.tabId.toLowerCase()}
+    >
+      <Link href={projectItem.url} target="_blank" rel="noopener noreferrer">
+        <figure className="project-img">
+          <div className="project-item-icon-box">
+            <Eye />
+          </div>
+
+          <Image
+            src={projectItem.image}
+            alt={projectItem.title}
+            title={projectItem.title}
+            loading="lazy"
+            width={500}
+            height={500}
+          />
+        </figure>
+
+        <h3 className="project-title">{projectItem.title}</h3>
+
+        <p className="project-category">
+          {tabList &&
+            tabList.length > 0 &&
+            tabList.find((tab: Tab) => tab?.id === projectItem?.tabId)?.name}
+        </p>
+      </Link>
+    </li>
+  );
+}
 
 export default function PortfolioPage() {
+  const [activeTab, setActiveTab] = useState<string>("all");
+
   return (
     <article className="portfolio active" data-page="portfolio">
       <header>
@@ -10,23 +127,18 @@ export default function PortfolioPage() {
 
       <section className="projects">
         <ul className="filter-list">
-          <li className="filter-item">
-            <button className="active" data-filter-btn>
-              All
-            </button>
-          </li>
-
-          <li className="filter-item">
-            <button data-filter-btn>Web design</button>
-          </li>
-
-          <li className="filter-item">
-            <button data-filter-btn>Applications</button>
-          </li>
-
-          <li className="filter-item">
-            <button data-filter-btn>Web development</button>
-          </li>
+          {tabList.map((tabItem, idx) => {
+            return (
+              <li className="filter-item" key={idx}>
+                <button
+                  className={tabItem.id === activeTab ? "active" : ""}
+                  onClick={() => setActiveTab(tabItem.id)}
+                >
+                  {tabItem.name}
+                </button>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="filter-select-box">
@@ -41,240 +153,34 @@ export default function PortfolioPage() {
           </button>
 
           <ul className="select-list">
-            <li className="select-item">
-              <button data-select-item>All</button>
-            </li>
-
-            <li className="select-item">
-              <button data-select-item>Web design</button>
-            </li>
-
-            <li className="select-item">
-              <button data-select-item>Applications</button>
-            </li>
-
-            <li className="select-item">
-              <button data-select-item>Web development</button>
-            </li>
+            {tabList.map((tabItem, idx) => {
+              return (
+                <li className="select-item" key={idx}>
+                  <button
+                    className={tabItem.id === activeTab ? "active" : ""}
+                    onClick={() => setActiveTab(tabItem.id)}
+                    data-select-item
+                  >
+                    {tabItem.name}
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
         <ul className="project-list">
-          <li
-            className="project-item  active"
-            data-filter-item
-            data-category="web development"
-          >
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <Eye />
-                </div>
+          {projectList
+            .filter((projectItem) => {
+              if (activeTab === "all") {
+                return true;
+              }
 
-                <img
-                  src="/assets/images/project-1.jpg"
-                  alt="finance"
-                  loading="lazy"
-                />
-              </figure>
-
-              <h3 className="project-title">Finance</h3>
-
-              <p className="project-category">Web development</p>
-            </a>
-          </li>
-
-          <li
-            className="project-item  active"
-            data-filter-item
-            data-category="web development"
-          >
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <Eye />
-                </div>
-
-                <img
-                  src="/assets/images/project-2.png"
-                  alt="orizon"
-                  loading="lazy"
-                />
-              </figure>
-
-              <h3 className="project-title">Orizon</h3>
-
-              <p className="project-category">Web development</p>
-            </a>
-          </li>
-
-          <li
-            className="project-item  active"
-            data-filter-item
-            data-category="web design"
-          >
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <Eye />
-                </div>
-
-                <img
-                  src="/assets/images/project-3.jpg"
-                  alt="fundo"
-                  loading="lazy"
-                />
-              </figure>
-
-              <h3 className="project-title">Fundo</h3>
-
-              <p className="project-category">Web design</p>
-            </a>
-          </li>
-
-          <li
-            className="project-item  active"
-            data-filter-item
-            data-category="applications"
-          >
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <Eye />
-                </div>
-
-                <img
-                  src="/assets/images/project-4.png"
-                  alt="brawlhalla"
-                  loading="lazy"
-                />
-              </figure>
-
-              <h3 className="project-title">Brawlhalla</h3>
-
-              <p className="project-category">Applications</p>
-            </a>
-          </li>
-
-          <li
-            className="project-item  active"
-            data-filter-item
-            data-category="web design"
-          >
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <Eye />
-                </div>
-
-                <img
-                  src="/assets/images/project-5.png"
-                  alt="dsm."
-                  loading="lazy"
-                />
-              </figure>
-
-              <h3 className="project-title">DSM.</h3>
-
-              <p className="project-category">Web design</p>
-            </a>
-          </li>
-
-          <li
-            className="project-item  active"
-            data-filter-item
-            data-category="web design"
-          >
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <Eye />
-                </div>
-
-                <img
-                  src="/assets/images/project-6.png"
-                  alt="metaspark"
-                  loading="lazy"
-                />
-              </figure>
-
-              <h3 className="project-title">MetaSpark</h3>
-
-              <p className="project-category">Web design</p>
-            </a>
-          </li>
-
-          <li
-            className="project-item  active"
-            data-filter-item
-            data-category="web development"
-          >
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <Eye />
-                </div>
-
-                <img
-                  src="/assets/images/project-7.png"
-                  alt="summary"
-                  loading="lazy"
-                />
-              </figure>
-
-              <h3 className="project-title">Summary</h3>
-
-              <p className="project-category">Web development</p>
-            </a>
-          </li>
-
-          <li
-            className="project-item  active"
-            data-filter-item
-            data-category="applications"
-          >
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <Eye />
-                </div>
-
-                <img
-                  src="/assets/images/project-8.jpg"
-                  alt="task manager"
-                  loading="lazy"
-                />
-              </figure>
-
-              <h3 className="project-title">Task Manager</h3>
-
-              <p className="project-category">Applications</p>
-            </a>
-          </li>
-
-          <li
-            className="project-item  active"
-            data-filter-item
-            data-category="web development"
-          >
-            <a href="#">
-              <figure className="project-img">
-                <div className="project-item-icon-box">
-                  <Eye />
-                </div>
-
-                <img
-                  src="/assets/images/project-9.png"
-                  alt="arrival"
-                  loading="lazy"
-                />
-              </figure>
-
-              <h3 className="project-title">Arrival</h3>
-
-              <p className="project-category">Web development</p>
-            </a>
-          </li>
+              return projectItem.tabId.toLowerCase() === activeTab;
+            })
+            .map((projectItem, idx) => {
+              return <PortfolioCard key={idx} projectItem={projectItem} />;
+            })}
         </ul>
       </section>
     </article>

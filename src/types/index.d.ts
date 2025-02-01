@@ -22,3 +22,17 @@ export type PostsResponse = {
     };
   };
 };
+
+export type Tab = {
+  id: string;
+  name: string;
+}
+
+export type Project = {
+  tabId: string;
+  title: string;
+  image: string;
+  url: string;
+  techStack?: string[]
+};
+
