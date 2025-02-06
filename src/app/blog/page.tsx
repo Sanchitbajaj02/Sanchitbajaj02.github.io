@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { request } from "graphql-request";
+import type { Metadata } from "next";
+
 import {
   API_ENDPOINT,
   GET_ALL_POSTS,
@@ -21,6 +23,11 @@ const fetchPosts = async (): Promise<PostsResponse | null> => {
 
   return data;
 };
+
+export const metadata: Metadata = {
+  title: "Blogs - Sanchit Bajaj",
+};
+
 
 export default async function BlogPage() {
   const apiData: PostsResponse | null = await fetchPosts();

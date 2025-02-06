@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/style.css";
 import type { Metadata } from "next";
-import { Roboto_Slab } from "next/font/google";
+import { Poppins } from "next/font/google";
 import MainGridLayout from "@/components/layouts/MainGridLayout";
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
 };
 
-const font = Roboto_Slab({
+const font = Poppins({
   weight: ["300", "400", "500", "600", "800"],
   subsets: ["latin"],
 });

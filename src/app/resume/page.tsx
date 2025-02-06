@@ -262,20 +262,16 @@ export default function ResumePage() {
         <h2 className="h2 article-title">My Resume</h2>
 
         <div className="icon-box">
-          <a href="docs/Sanchit's%20resume.pdf" title="Download Resume" role="button" target="_blank">
+          <a
+            href="docs/Sanchit's%20resume.pdf"
+            title="Download Resume"
+            role="button"
+            target="_blank"
+          >
             <Download />
           </a>
         </div>
       </header>
-
-      {/* <a
-        className="form-btn"
-        style={{ margin: 0, fontSize: 12 }}
-        role="button"
-        download
-      >
-        Download Resume
-      </a> */}
 
       <section className="timeline">
         <div className="title-wrapper">
@@ -283,7 +279,7 @@ export default function ResumePage() {
             <BookOpen />
           </div>
 
-          <h3 className="h3">Experience</h3>
+          <h3 className="h3">Employment Experience</h3>
         </div>
 
         <ol className="timeline-list">
@@ -292,43 +288,36 @@ export default function ResumePage() {
               Software Engineer | Infozech Software Pvt. Ltd.
             </h4>
 
-            <span>Jul 2023 — Present</span>
+            <span>📍 Delhi, India | Jul 2023 - Present</span>
 
             <ul className="timeline-text pl-4">
               <li className="list-disc">
-                Worked on cross-platform technologies to develop customizable
-                reporting features based on the IFRS-16 reporting by utilizing
-                the DMR modules under the part of user stories
+                Optimized data processing workflows by migrating modules to
+                PostgreSQL functions, reducing processing time by 70%.
               </li>
               <li className="list-disc">
-                Streamlined and optimized the software workflow by migrating
-                data processing modules to PostgreSQL functions, resulting in a
-                70% reduction in processing time.
+                Integrated user-based API access into the OIM application for
+                centralized user management, enhancing efficiency for Airtel
+                India.
               </li>
               <li className="list-disc">
-                Exposed the tightly coupled internal APIs for user based access
-                to integrate into OIM application of their for fast and
-                centralized user management for the client 'Airtel Africa'.
+                Strengthened security measures by identifying and mitigating
+                critical vulnerabilities, improving product quality by 50%.
               </li>
               <li className="list-disc">
-                Identified and mitigated critical security vulnerabilities,
-                improving product quality by 50% and boosting overall client
-                satisfaction.
-              </li>
-              <li className="list-disc">
-                Created the Service Order Tracker for the client 'Airtel
-                Africa', streamlining order management with efficient asset
-                handling and extensive role based access control.
+                Developed a Service Order Tracker for Airtel Africa,
+                streamlining order management with enhanced asset tracking and
+                role-based access control.
               </li>
             </ul>
           </li>
 
           <li className="timeline-item">
             <h4 className="h4 timeline-item-title">
-              Full Stack Developer (Intern) | Techcurators Pvt. Ltd.
+              Full Stack Developer | Techcurators Pvt. Ltd.
             </h4>
 
-            <span>Dec 2022 — May 2023</span>
+            <span>📍 Delhi, India | Dec 2022 - May 2023</span>
 
             {/* <p className="timeline-text">
               Nemo enims ipsam voluptatem, blanditiis praesentium voluptum
@@ -336,29 +325,26 @@ export default function ResumePage() {
             </p> */}
             <ul className="timeline-text pl-4">
               <li className="list-disc">
-                Built and deployed a scalable Applicant Tracking System (ATS)
-                and Interview-as-a-Service platform using the MERN Stack,
-                integrating many third-party and customized APIs, reducing
-                time-to-hire by 30% and enhancing the candidate experience.
+                Designed and deployed a scalable ATS & Interview-as-a-Service
+                platform using the MERN Stack, reducing time-to-hire by 50%.
               </li>
               <li className="list-disc">
-                Designed and optimized the user interface to meet modern
-                standards, improving usability by 25%.
+                Enhanced UI/UX design, improving platform usability and
+                navigation by 25%.
               </li>
               <li className="list-disc">
-                Led the architecture, software design, API testing, and
-                deployment on Azure, with CI/CD pipeline integration via GitHub.
+                Led system architecture, API testing, and deployment on Azure,
+                integrating CI/CD pipelines via GitHub Actions.
               </li>
             </ul>
           </li>
 
           <li className="timeline-item">
             <h4 className="h4 timeline-item-title">
-              Lead Full-Stack Developer (Intern) | A4R LLC - Fitness Lifestyle
-              Token
+              Full-Stack Developer (Intern) | A4R LLC - Fitness Lifestyle Token
             </h4>
 
-            <span>Jan 2022 — Sep 2022</span>
+            <span>🌍 Remote | Jan 2022 - Sep 2022</span>
 
             {/* <p className="timeline-text">
               Nemo enims ipsam voluptatem, blanditiis praesentium voluptum
@@ -366,17 +352,18 @@ export default function ResumePage() {
             </p> */}
             <ul className="timeline-text pl-4">
               <li className="list-disc">
-                Developed and deployed the A4R token on a Layer-1 ERC20
-                blockchain, creating a robust cryptocurrency platform.
+                Developed and launched the A4R token on a Layer-1 ERC20
+                blockchain, creating a secure and scalable cryptocurrency
+                ecosystem.
               </li>
               <li className="list-disc">
-                Built both frontend and backend for the marketing website,
-                attracting over 10,000 users, and devised a user dashboard for
-                progress tracking.
+                Engineered the frontend and backend of a user-facing web
+                platform, attracting 10,000+ users and building a
+                progress-tracking dashboard.
               </li>
               <li className="list-disc">
-                Integrated Web3 authentication and live price tracking of A4R
-                token with launchpad access using Moralis.
+                Integrated Web3 authentication and real-time token price
+                tracking with launchpad access using Moralis.
               </li>
             </ul>
           </li>

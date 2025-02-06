@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Project, Tab } from "@/types";
+import type { Metadata } from "next";
 
 const tabList: Tab[] = [
   {
@@ -80,6 +81,10 @@ const projectList: Project[] = [
     url: "https://www.google.com",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Portfolio - Sanchit Bajaj",
+};
 
 function PortfolioCard({ projectItem }: { projectItem: Project }) {
   return (
