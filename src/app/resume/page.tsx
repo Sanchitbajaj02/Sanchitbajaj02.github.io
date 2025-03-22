@@ -1,39 +1,11 @@
 import { BookOpen, CircleCheckBig, Download } from "lucide-react";
 import type { Metadata } from "next";
-import React from "react";
+import { skills } from "@/static/skillItems";
+import { SkillItem } from "@/types";
 
 export const metadata: Metadata = {
   title: "Resume - Sanchit Bajaj",
 };
-
-const skills = [
-  {
-    skillName: "Web app development",
-    percentage: "95%",
-  },
-  {
-    skillName: "Mobile app development",
-    percentage: "85%",
-  },
-  {
-    skillName: "Blockchain development",
-    percentage: "85%",
-  },
-  {
-    skillName: "UI/UX designing",
-    percentage: "90%",
-  },
-  {
-    skillName: "System Design and Optimization",
-    percentage: "92%",
-  },
-  {
-    skillName: "Personal Branding",
-    percentage: "80%",
-  },
-];
-
-type SkillItem = (typeof skills)[0];
 
 // const SkillBadge = ({ skill }: { skill: SkillItem }) => {
 //   return (
@@ -279,7 +251,7 @@ export default function ResumePage() {
             <BookOpen />
           </div>
 
-          <h3 className="h3">Employment Experience</h3>
+          <h3 className="h3 font-semibold">Employment Experience</h3>
         </div>
 
         <ol className="timeline-list">
@@ -376,7 +348,7 @@ export default function ResumePage() {
             <BookOpen />
           </div>
 
-          <h3 className="h3">Education</h3>
+          <h3 className="h3 font-semibold">Education</h3>
         </div>
 
         <ol className="timeline-list">
@@ -406,36 +378,33 @@ export default function ResumePage() {
               <small className="timeline-text">(Delhi, India)</small>
             </h4>
 
-            <span>2006 — 2019</span>
+            <span>2018 — 2019</span>
 
             <p className="timeline-text">
-              Completed my 10<sup>th</sup> and 12<sup>th</sup> while achieving
-              the aggregated percentage 88% & 86% respectively. Being a part of
-              many technical and literacy clubs, and had a chance to be prefect
-              for a year.
+              Completed 12<sup>th</sup> achieving aggregated percentage
+              86%. Being a part of many technical and literacy clubs, and had a
+              chance to be prefect for a year.
             </p>
           </li>
 
-          {/* <li className="timeline-item">
+          <li className="timeline-item">
             <h4 className="h4 timeline-item-title">
               Lilawati Vidya Mandir Sr. Sc. School{" "}
-              <small className="timeline-text">
-                Delhi, India
-              </small>
+              <small className="timeline-text">(Delhi, India)</small>
             </h4>
 
-            <span>2002 — 2004</span>
+            <span>2016 — 2017</span>
 
             <p className="timeline-text">
-              Duis aute irure dolor in reprehenderit in voluptate, quila
-              voluptas mag odit aut fugit, sed consequuntur magni dolores eos.
+              Completed 10<sup>th</sup> achieving aggregated percentage
+              88%
             </p>
-          </li> */}
+          </li>
         </ol>
       </section>
 
       <section className="skill">
-        <h3 className="h3 skills-title">My skills</h3>
+        <h3 className="h3 skills-title font-semibold">My skills</h3>
 
         <ul className="service-list">
           {skills &&
@@ -447,7 +416,7 @@ export default function ResumePage() {
       </section>
 
       <section className="tech-stack my-8">
-        <h3 className="h3 skills-title">Technology Stack</h3>
+        <h3 className="h3 skills-title font-semibold">Technology Stack</h3>
 
         <TechStack />
       </section>

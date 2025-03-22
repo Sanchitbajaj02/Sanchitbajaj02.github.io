@@ -49,21 +49,17 @@ export default function HomePage() {
         </header>
 
         <section className="about-text">
-          {/* <h4 className="h4 timeline-item-title">👋 Hey, I'm Sanchit!</h4> */}
+          <h4 className="h4 timeline-item-title">👋 Hey, I'm Sanchit Bajaj!</h4>
           <p className="timeline-item-title">
-          👋 Hey, I'm Sanchit Bajaj! A Computer Science Engineering graduate with over 2 years of
-            hands-on experience in Web and Mobile App Development. I specialize
-            in designing and developing efficient, scalable, and user-centric
-            applications using the latest technologies.
+            Results-driven{" "}
+            <strong>Software Engineer with 2+ years of experience</strong>{" "}
+            developing scalable applications, optimizing system performance
+            (improving response times by 50%), and enhancing security.
+            Proficient in web development technologies, including{" "}
+            <strong>JavaScript</strong> (React, Next.js, Node.js, Express.js),
+            with a strong understanding of{" "}
+            <strong>SQL & NoSQL databases.</strong>
           </p>
-          {/* <p>
-            My job is to build your website so that it is functional and
-            user-friendly but at the same time attractive. Moreover, I add
-            personal touch to your product and make sure that is eye-catching
-            and easy to use. My aim is to bring across your message and identity
-            in the most creative way. I created web design for many famous brand
-            companies.
-          </p> */}
         </section>
 
         <section className="service">

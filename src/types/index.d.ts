@@ -36,3 +36,14 @@ export type Project = {
   techStack?: string[]
 };
 
+
+export type NavItem = {
+  label: string,
+  slug: string,
+}
+
+export type SkillItem = {
+  skillId: string
+  skillName: string,
+  percentage: string,
+}

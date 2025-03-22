@@ -2,31 +2,8 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const navItems = [
-  {
-    label: "Home",
-    slug: "/",
-  },
-  {
-    label: "Resume",
-    slug: "/resume",
-  },
-  {
-    label: "Portfolio",
-    slug: "/portfolio",
-  },
-  {
-    label: "Blog",
-    slug: "/blog",
-  },
-  {
-    label: "Contact",
-    slug: "/contact",
-  },
-];
-
-type NavItem = (typeof navItems)[0];
+import { NavItem } from "@/types";
+import { navItems } from "@/static/navItems";
 
 export const Navbar = () => {
   const path = usePathname();
