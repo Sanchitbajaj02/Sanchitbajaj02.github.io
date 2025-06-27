@@ -47,3 +47,10 @@ export type SkillItem = {
   skillName: string,
   percentage: string,
 }
+
+export type TimelineItem = {
+  title: string;
+  year: string;
+  location: string;
+  timelineItems: string[];
+}
