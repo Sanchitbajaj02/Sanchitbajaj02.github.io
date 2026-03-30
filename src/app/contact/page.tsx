@@ -1,15 +1,26 @@
 import { ContactForm } from "@/components/ContactForm";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Contact - Sanchit Bajaj",
+  title: "Contact Sanchit Bajaj — Let's Build Something Together",
+  description:
+    "Get in touch with Sanchit Bajaj — Full-Stack Software Engineer based in Delhi, India. Available for full-time roles, freelance projects, and consulting. Book a call or send a message.",
+  keywords: [
+    "contact Sanchit Bajaj",
+    "hire full stack developer Delhi",
+    "hire React developer India",
+    "full stack developer available for work",
+    "book a call software engineer India",
+    "freelance developer Delhi",
+  ],
 };
 
 export default function ContactPage() {
   return (
     <article className="contact active" data-page="contact">
       <header>
-        <h2 className="h2 article-title">Get in Touch!</h2>
+        <h2 className="h2 article-title">Get in Touch</h2>
       </header>
 
       <section className="mapbox" data-mapbox>
@@ -20,14 +31,58 @@ export default function ContactPage() {
             height="1000"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            title="Sanchit Bajaj location — Delhi, India"
           ></iframe>
         </figure>
       </section>
 
       <section className="contact-form">
-        <h3 className="h3 form-title">Contact Form</h3>
-
+        <h3 className="h3 form-title">Send a Message</h3>
         <ContactForm />
+      </section>
+
+      <section
+        style={{
+          marginTop: "32px",
+          padding: "20px 24px",
+          borderRadius: "12px",
+          background: "var(--bg-gradient-jet)",
+          border: "1px solid hsl(0,0%,22%)",
+        }}
+      >
+        <p style={{ fontSize: "14px", opacity: 0.8, marginBottom: "12px" }}>
+          Prefer to see my work first?
+        </p>
+        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+          <Link
+            href="/portfolio"
+            style={{
+              padding: "8px 16px",
+              borderRadius: "8px",
+              border: "1px solid hsl(45,100%,71%)",
+              color: "hsl(45,100%,71%)",
+              fontSize: "13px",
+              fontWeight: 500,
+              textDecoration: "none",
+            }}
+          >
+            View Portfolio
+          </Link>
+          <Link
+            href="/resume"
+            style={{
+              padding: "8px 16px",
+              borderRadius: "8px",
+              border: "1px solid hsl(0,0%,40%)",
+              color: "hsl(0,0%,84%)",
+              fontSize: "13px",
+              fontWeight: 500,
+              textDecoration: "none",
+            }}
+          >
+            View Resume
+          </Link>
+        </div>
       </section>
     </article>
   );

@@ -9,26 +9,124 @@
   scroll-behavior: smooth;
 }
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+/* ─── Ambient breathing light on sidebar ─── */
+@keyframes breatheLight {
+  0%   { transform: translate(-20%, -20%) scale(1);   opacity: 0.06; }
+  33%  { transform: translate(60%, 10%)  scale(1.1);  opacity: 0.09; }
+  66%  { transform: translate(10%, 70%)  scale(0.95); opacity: 0.07; }
+  100% { transform: translate(-20%, -20%) scale(1);   opacity: 0.06; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.sidebar-breathing-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.sidebar-breathing-light::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    ellipse at center,
+    hsl(45, 100%, 71%) 0%,
+    transparent 65%
+  );
+  animation: breatheLight 6s ease-in-out infinite;
+}
+
+/* ─── Open to Work badge pulse ─── */
+@keyframes openToPulse {
+  0%   { box-shadow: 0 0 0 0 hsla(140, 80%, 55%, 0.4); }
+  70%  { box-shadow: 0 0 0 6px hsla(140, 80%, 55%, 0); }
+  100% { box-shadow: 0 0 0 0 hsla(140, 80%, 55%, 0); }
+}
+
+/* ─── Scroll progress bar ─── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(to right, hsl(45, 100%, 72%), hsl(35, 100%, 68%));
+  transform-origin: left;
+  z-index: 9995;
+  pointer-events: none;
+}
+
+/* ─── Blog card hover: Apple-style backdrop glow ─── */
+.blog-post-item {
+  position: relative;
+}
+
+.blog-post-item::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.blog-post-item:hover::before {
+  opacity: 1;
+}
+
+.blog-post-item .blog-banner-box img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.blog-post-item:hover .blog-banner-box img {
+  transform: scale(1.06) !important;
+}
+
+/* ─── Navbar: prep for sliding indicator ─── */
+.navbar-item {
+  position: relative;
+}
+
+/* ─── Portfolio card: preserve-3d for parallax layers ─── */
+.portfolio-card-wrapper {
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+/* ─── Form field: animated focus ring ─── */
+.form-input-wrapper {
+  position: relative;
+}
+
+.form-focus-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(to right, hsl(45, 100%, 72%), hsl(35, 100%, 68%));
+  width: 0%;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 999px;
+}
+
+.form-input:focus ~ .form-focus-bar,
+.form-input:focus-within ~ .form-focus-bar {
+  width: 100%;
+}
+
+/* ─── Reduced motion overrides ─── */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-breathing-light::after {
+    animation: none;
+    opacity: 0.05;
+  }
+  #scroll-progress {
+    transition: none;
   }
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-} */

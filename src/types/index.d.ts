@@ -4,16 +4,17 @@ export type Post = {
       url: string;
     };
     title: string;
+    brief: string;
     publishedAt: string;
     slug: string;
-    tags: Tag[]
+    tags: Tag[];
   };
 };
 
 export type Tag = {
   id: string;
   name: string;
-}
+};
 
 export type PostsResponse = {
   publication: {
@@ -26,31 +27,31 @@ export type PostsResponse = {
 export type Tab = {
   id: string;
   name: string;
-}
+};
 
 export type Project = {
   tabId: string;
   title: string;
+  description: string;
   image: string;
   url: string;
-  techStack?: string[]
+  techStack?: string[];
 };
 
-
 export type NavItem = {
-  label: string,
-  slug: string,
-}
+  label: string;
+  slug: string;
+};
 
 export type SkillItem = {
-  skillId: string
-  skillName: string,
-  percentage: string,
-}
+  skillId: string;
+  skillName: string;
+  percentage: string;
+};
 
 export type TimelineItem = {
   title: string;
   year: string;
   location: string;
   timelineItems: string[];
-}
+};
