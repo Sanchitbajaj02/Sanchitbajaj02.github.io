@@ -1,17 +1,21 @@
-// import { CircleX } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import type { Metadata } from "next";
+import ScrollReveal, { StaggerContainer, StaggerItem } from "@/components/animations/ScrollReveal";
+import MagneticButton from "@/components/animations/MagneticButton";
+import TextScramble from "@/components/animations/TextScramble";
+
+export const metadata: Metadata = {
+  title: "Sanchit Bajaj — Full-Stack Developer | React · Next.js · Node.js",
+  description:
+    "Sanchit Bajaj is a Full-Stack Software Engineer based in Delhi, India, with 2+ years of experience building scalable web and mobile apps using React, Next.js, and Node.js.",
+};
 
 export type InfoCard = {
   cardTitle: string;
   cardDescription: string;
   cardImage: string;
 };
-
-/*
-/assets/images/icon-design.svg
-/assets/images/icon-dev.svg
-/assets/images/icon-app.svg
-/assets/images/icon-photo.svg
-*/
 
 const whatIamDoing: InfoCard[] = [
   {
@@ -27,7 +31,7 @@ const whatIamDoing: InfoCard[] = [
     cardImage: "/assets/images/icon-dev.svg",
   },
   {
-    cardTitle: "Backend development",
+    cardTitle: "Backend Development",
     cardDescription:
       "Designing secure, scalable servers, APIs, and database solutions.",
     cardImage: "/assets/images/icon-dev.svg",
@@ -40,268 +44,223 @@ const whatIamDoing: InfoCard[] = [
   },
 ];
 
+
 export default function HomePage() {
   return (
     <>
       <article className="about active" data-page="about">
         <header>
-          <h2 className="h2 article-title">About me</h2>
+          <h2 className="h2 article-title">
+            <TextScramble text="About Me" />
+          </h2>
         </header>
 
-        <section className="about-text">
-          <h4 className="h4 timeline-item-title">👋 Hey, I'm Sanchit Bajaj!</h4>
-          <p className="timeline-item-title">
-            Results-driven{" "}
-            <strong>Software Engineer with 2+ years of experience</strong>{" "}
-            developing scalable applications, optimizing system performance
-            (improving response times by 50%), and enhancing security.
-            Proficient in web development technologies, including{" "}
-            <strong>JavaScript</strong> (React, Next.js, Node.js, Express.js),
-            with a strong understanding of{" "}
-            <strong>SQL & NoSQL databases.</strong>
-          </p>
-        </section>
+        <ScrollReveal>
+          <section className="about-text">
+            <h4 className="h4 timeline-item-title">Hey, I&apos;m Sanchit Bajaj!</h4>
+            <p className="timeline-item-title">
+              I&apos;ve helped reduce system processing time by{" "}
+              <strong>70%</strong>, onboarded <strong>10,000+ users</strong> to a
+              crypto ecosystem, and cut deployment cycle time from 3 hours to 30
+              minutes — all as a{" "}
+              <strong>Full-Stack Software Engineer with 2+ years of experience</strong>{" "}
+              at product companies and startups. I build with{" "}
+              <strong>JavaScript · React · Next.js · Node.js · Express.js</strong>{" "}
+              and have strong command over{" "}
+              <strong>SQL & NoSQL databases</strong> and system design.
+            </p>
 
-        <section className="service">
-          <h3 className="h3 service-title">What i'm doing</h3>
-
-          <ul className="service-list">
-            {whatIamDoing.map((card: InfoCard, idx: number) => {
-              return (
-                <li className="service-item" key={idx}>
-                  <div className="service-icon-box">
-                    <img
-                      src={card.cardImage}
-                      alt="design icon"
-                      width={50}
-                      height={50}
-                    />
-                  </div>
-
-                  <div className="service-content-box">
-                    <h4 className="h4 service-item-title">{card.cardTitle}</h4>
-
-                    <p className="service-item-text">{card.cardDescription}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-
-        {/* <section className="testimonials">
-          <h3 className="h3 testimonials-title">Testimonials</h3>
-
-          <ul className="testimonials-list has-scrollbar">
-            <li className="testimonials-item">
-              <div className="content-card" data-testimonials-item>
-                <figure className="testimonials-avatar-box">
-                  <img
-                    src="/assets/images/avatar-1.png"
-                    alt="Daniel lewis"
-                    width="60"
-                    data-testimonials-avatar
-                  />
-                </figure>
-
-                <h4
-                  className="h4 testimonials-item-title"
-                  data-testimonials-title
+            <div
+              style={{
+                display: "flex",
+                gap: "12px",
+                marginTop: "20px",
+                flexWrap: "wrap",
+              }}
+            >
+              <MagneticButton>
+                <Link
+                  href="/portfolio"
+                  style={{
+                    display: "block",
+                    padding: "10px 20px",
+                    borderRadius: "8px",
+                    background:
+                      "linear-gradient(to right, hsl(45,100%,72%), hsl(35,100%,68%))",
+                    color: "hsl(240,2%,12%)",
+                    fontWeight: 600,
+                    fontSize: "14px",
+                    textDecoration: "none",
+                  }}
                 >
-                  Daniel lewis
-                </h4>
-
-                <div className="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were
-                    very pleased with the work done. She has a lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum
-                    dolor sit amet, ullamcous cididt consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels
-                    dolore magnarels alia.
-                  </p>
-                </div>
-              </div>
-            </li>
-
-            <li className="testimonials-item">
-              <div className="content-card" data-testimonials-item>
-                <figure className="testimonials-avatar-box">
-                  <img
-                    src="/assets/images/avatar-2.png"
-                    alt="Jessica miller"
-                    width="60"
-                    data-testimonials-avatar
-                  />
-                </figure>
-
-                <h4
-                  className="h4 testimonials-item-title"
-                  data-testimonials-title
+                  View My Work
+                </Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link
+                  href="/contact"
+                  style={{
+                    display: "block",
+                    padding: "10px 20px",
+                    borderRadius: "8px",
+                    border: "1px solid hsl(45,100%,71%)",
+                    color: "hsl(45,100%,71%)",
+                    fontWeight: 600,
+                    fontSize: "14px",
+                    textDecoration: "none",
+                  }}
                 >
-                  Jessica miller
-                </h4>
-
-                <div className="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were
-                    very pleased with the work done. She has a lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum
-                    dolor sit amet, ullamcous cididt consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels
-                    dolore magnarels alia.
-                  </p>
-                </div>
-              </div>
-            </li>
-
-            <li className="testimonials-item">
-              <div className="content-card" data-testimonials-item>
-                <figure className="testimonials-avatar-box">
-                  <img
-                    src="/assets/images/avatar-3.png"
-                    alt="Emily evans"
-                    width="60"
-                    data-testimonials-avatar
-                  />
-                </figure>
-
-                <h4
-                  className="h4 testimonials-item-title"
-                  data-testimonials-title
-                >
-                  Emily evans
-                </h4>
-
-                <div className="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were
-                    very pleased with the work done. She has a lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum
-                    dolor sit amet, ullamcous cididt consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels
-                    dolore magnarels alia.
-                  </p>
-                </div>
-              </div>
-            </li>
-
-            <li className="testimonials-item">
-              <div className="content-card" data-testimonials-item>
-                <figure className="testimonials-avatar-box">
-                  <img
-                    src="/assets/images/avatar-4.png"
-                    alt="Henry william"
-                    width="60"
-                    data-testimonials-avatar
-                  />
-                </figure>
-
-                <h4
-                  className="h4 testimonials-item-title"
-                  data-testimonials-title
-                >
-                  Henry william
-                </h4>
-
-                <div className="testimonials-text" data-testimonials-text>
-                  <p>
-                    Richard was hired to create a corporate identity. We were
-                    very pleased with the work done. She has a lot of experience
-                    and is very concerned about the needs of client. Lorem ipsum
-                    dolor sit amet, ullamcous cididt consectetur adipiscing
-                    elit, seds do et eiusmod tempor incididunt ut laborels
-                    dolore magnarels alia.
-                  </p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </section>
-
-        <div className="modal-container" data-modal-container>
-          <div className="overlay" data-overlay></div>
-
-          <section className="testimonials-modal">
-            <button className="modal-close-btn" data-modal-close-btn>
-              <CircleX />
-            </button>
-
-            <div className="modal-img-wrapper">
-              <figure className="modal-avatar-box">
-                <img
-                  src="/assets/images/avatar-1.png"
-                  alt="Daniel lewis"
-                  width="80"
-                  data-modal-img
-                />
-              </figure>
-
-              <img src="/assets/images/icon-quote.svg" alt="quote icon" />
-            </div>
-
-            <div className="modal-content">
-              <h4 className="h3 modal-title" data-modal-title>
-                Daniel lewis
-              </h4>
-
-              <time dateTime="2021-06-14">14 June, 2021</time>
-
-              <div data-modal-text>
-                <p>
-                  Richard was hired to create a corporate identity. We were very
-                  pleased with the work done. She has a lot of experience and is
-                  very concerned about the needs of client. Lorem ipsum dolor
-                  sit amet, ullamcous cididt consectetur adipiscing elit, seds
-                  do et eiusmod tempor incididunt ut laborels dolore magnarels
-                  alia.
-                </p>
-              </div>
+                  Let&apos;s Talk
+                </Link>
+              </MagneticButton>
             </div>
           </section>
-        </div> */}
+        </ScrollReveal>
 
-        {/* <section className="clients">
-          <h3 className="h3 clients-title">Clients</h3>
+        <ScrollReveal delay={0.1}>
+          <section className="service">
+            <h3 className="h3 service-title">What I&apos;m Doing</h3>
 
-          <ul className="clients-list has-scrollbar">
-            <li className="clients-item">
-              <a href="#">
-                <img src="/assets/images/logo-1-color.png" alt="client logo" />
-              </a>
-            </li>
+            <StaggerContainer>
+              <ul className="service-list">
+                {whatIamDoing.map((card: InfoCard, idx: number) => (
+                  <StaggerItem key={idx}>
+                    <li className="service-item">
+                      <div className="service-icon-box">
+                        <Image
+                          src={card.cardImage}
+                          alt={card.cardTitle}
+                          width={50}
+                          height={50}
+                        />
+                      </div>
 
-            <li className="clients-item">
-              <a href="#">
-                <img src="/assets/images/logo-2-color.png" alt="client logo" />
-              </a>
-            </li>
+                      <div className="service-content-box">
+                        <h4 className="h4 service-item-title">{card.cardTitle}</h4>
+                        <p className="service-item-text">{card.cardDescription}</p>
+                      </div>
+                    </li>
+                  </StaggerItem>
+                ))}
+              </ul>
+            </StaggerContainer>
+          </section>
+        </ScrollReveal>
 
-            <li className="clients-item">
-              <a href="#">
-                <img src="/assets/images/logo-3-color.png" alt="client logo" />
-              </a>
-            </li>
 
-            <li className="clients-item">
-              <a href="#">
-                <img src="/assets/images/logo-4-color.png" alt="client logo" />
-              </a>
-            </li>
+        <ScrollReveal delay={0.1}>
+          <section
+            style={{
+              marginTop: "32px",
+              padding: "20px 24px",
+              borderRadius: "12px",
+              background: "var(--bg-gradient-jet)",
+              border: "1px solid hsl(0,0%,22%)",
+            }}
+          >
+            <h3 className="h3" style={{ marginBottom: "8px" }}>
+              From My Blog
+            </h3>
+            <p
+              style={{ fontSize: "13px", opacity: 0.75, marginBottom: "16px" }}
+            >
+              I write about JavaScript, React, system design, and software
+              engineering on Hashnode.
+            </p>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              <MagneticButton>
+                <Link
+                  href="/blog"
+                  style={{
+                    display: "block",
+                    padding: "8px 16px",
+                    borderRadius: "8px",
+                    background:
+                      "linear-gradient(to right, hsl(45,100%,72%), hsl(35,100%,68%))",
+                    color: "hsl(240,2%,12%)",
+                    fontWeight: 600,
+                    fontSize: "13px",
+                    textDecoration: "none",
+                  }}
+                >
+                  Read All Articles
+                </Link>
+              </MagneticButton>
+            </div>
+          </section>
+        </ScrollReveal>
 
-            <li className="clients-item">
-              <a href="#">
-                <img src="/assets/images/logo-5-color.png" alt="client logo" />
-              </a>
-            </li>
+        <ScrollReveal delay={0.1}>
+          <section style={{ marginTop: "40px" }}>
+            <h3 className="h3" style={{ marginBottom: "16px" }}>
+              Frequently Asked Questions
+            </h3>
 
-            <li className="clients-item">
-              <a href="#">
-                <img src="/assets/images/logo-6-color.png" alt="client logo" />
-              </a>
-            </li>
-          </ul>
-        </section> */}
+            <StaggerContainer>
+              <div style={{ display: "grid", gap: "12px" }}>
+                {[
+                  {
+                    q: "Is Sanchit Bajaj available for new opportunities?",
+                    a: "Yes — I am currently open to full-time roles, freelance projects, and consulting engagements. Feel free to reach out via the Contact page or book a call on Topmate.",
+                  },
+                  {
+                    q: "What technologies does Sanchit Bajaj specialise in?",
+                    a: "I specialise in JavaScript and TypeScript across the full stack — React and Next.js on the frontend, and Node.js with Express.js on the backend. I also have hands-on experience with PostgreSQL, MongoDB, Redis, React Native, and cloud platforms including AWS and Azure.",
+                  },
+                  {
+                    q: "What kinds of projects has Sanchit Bajaj worked on?",
+                    a: "I have built ATS and interview-automation platforms, IFRS-16 financial reporting systems, blockchain-based token ecosystems with 10,000+ users, and real-time service order trackers for Airtel Africa. My work spans startups, enterprises, and freelance projects.",
+                  },
+                  {
+                    q: "How can I contact Sanchit Bajaj?",
+                    a: "You can reach me at sanchitbajaj02@gmail.com, send a message via the Contact page, or book a call directly at topmate.io/sanchitbajaj02.",
+                  },
+                  {
+                    q: "Where is Sanchit Bajaj based?",
+                    a: "I am based in Delhi, India, and am open to remote opportunities worldwide as well as on-site roles in India.",
+                  },
+                ].map(({ q, a }, idx) => (
+                  <StaggerItem key={idx}>
+                    <details
+                      style={{
+                        padding: "16px",
+                        borderRadius: "10px",
+                        background: "var(--bg-gradient-jet)",
+                        border: "1px solid hsl(0,0%,22%)",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <summary
+                        style={{
+                          fontWeight: 600,
+                          fontSize: "14px",
+                          listStyle: "none",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          gap: "8px",
+                        }}
+                      >
+                        {q}
+                        <span style={{ opacity: 0.5, flexShrink: 0 }}>+</span>
+                      </summary>
+                      <p
+                        style={{
+                          marginTop: "10px",
+                          fontSize: "13px",
+                          lineHeight: 1.7,
+                          opacity: 0.8,
+                        }}
+                      >
+                        {a}
+                      </p>
+                    </details>
+                  </StaggerItem>
+                ))}
+              </div>
+            </StaggerContainer>
+          </section>
+        </ScrollReveal>
       </article>
     </>
   );

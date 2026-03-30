@@ -1,0 +1,23 @@
+{
+  "name": "Sanchit Bajaj — Full-Stack Developer",
+  "short_name": "Sanchit Bajaj",
+  "description": "Portfolio of Sanchit Bajaj, Full-Stack Software Engineer specialising in React, Next.js, and Node.js.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e1e2e",
+  "theme_color": "#1e1e2e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/profile-pic.png",
+      "sizes": "250x250",
+      "type": "image/png"
+    }
+  ]
+}

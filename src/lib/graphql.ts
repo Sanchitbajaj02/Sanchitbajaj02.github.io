@@ -13,6 +13,7 @@ export const GET_ALL_POSTS = gql`
           node {
             id
             title
+            brief
             author{
               name
               profilePicture
