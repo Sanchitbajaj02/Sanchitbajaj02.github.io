@@ -2,16 +2,46 @@ import { TimelineItem } from "@/types";
 
 export const workExperienceTimeline: TimelineItem[] = [
   {
+    title: "Dotpe Pvt Ltd | Software Development Engineer 1",
+    location: "Gurugram, Haryana, India",
+    year: "Feb 2026 - Present",
+    timelineItems: [
+      "Integrated 2 POS machines with existing billing system enabling merchants to process transactions through multiple channels, resulting in a 30% increase in transaction volume.",
+      "Optimized the UI intractions and reduced the load time of screens by 40% by implementing lazy loading and code splitting techniques.",
+      "Architected the multi language system for UAE QSR chains to smoothly onboard them to the platform and expand the market gulf region.",
+    ],
+  },
+  {
     title: "Infozech Software Pvt Ltd | Software Engineer",
     location: "New Delhi, India",
-    year: "JUL 2023 - Present",
+    year: "JAN 2024 - JAN 2026",
     timelineItems: [
-      "Worked on cross-platform technologies to develop customizable reporting features based on the IFRS-16 reporting by utilizing the DMR modules under the part of user stories.",
-      "Migrated IFRS-16 schedule generation logic from JavaScript to PostgreSQL function to handle large volume row generation (1000+ rows per line item), reducing processing time by 70%.",
-      "Securely exposed and integrated the APIs of user-management module to the Oracle Identity Manager (OIM) service for centralized user management, enhancing efficiency for Airtel India.",
-      "Implemented secure authentication, token-based validations across APIs, SSO integration using Azure Active Directory (AD), forge XSS, CSRF, CORS, Cache-control and TLS policies improving compliance and reducing breach risk by 50%.",
-      "Worked with cross-functional team to developed Service Order Tracker for Airtel Africa, streamlining order management with enhanced asset management & tracking. Architected the role-based access control (RBAC) for different sub-hierarchical users and reporting modules.",
-      "Engineered the dynamic multi country system in Express.js to optimally utilize the software without any extra configuration based on country.",
+      "Spearheaded the development of customizable financial reporting features, reducing manual work by 50%.",
+      "Migrated IFRS-16 financial logic from JavaScript to PostgreSQL function reducing the process time by 70%.",
+      "Collaborated with cross-functional teams to develop Service Order Tracker, streamlining RBAC, bulk/single data loading, multi-tenant reporting, asset recording calculations optimizing the customer’s process by 50%.",
+      "Conducted a successful POC on integration of multi-tenant architecture into the current system, showcasing scalability in the system and a projected 30% platform efficiency.",
+    ],
+  },
+  {
+    title: "Infozech Software Pvt Ltd | Software Trainee",
+    location: "New Delhi, India",
+    year: "JUL 2023 - DEC 2023",
+    timelineItems: [
+      "Collaborated with the cross-functional team to deliver the software requirements presented by the customers.",
+      "Learned about different processes and software development lifecycle.",
+      "Fixed over 30 functional as well as non-functional bugs in the application deployed on customer's server.",
+      "Analyzed and developed the IFRS reporting flows for lease billing solution.",
+    ],
+  },
+  {
+    title: "Tutort Academy LLP | Freelance Full Stack Developer",
+    location: "Remote",
+    year: "May 2023 - JUL 2023",
+    timelineItems: [
+      "Spearheaded the development of website for tutort academy to showcase their products and services.",
+      "Crafted the customized UI in SCSS for smooth UI and lower load times.",
+      "Achieved 99% SEO on both mobile and desktop with under 1s of both LCP & FCP.",
+      "Automated the contact form submission to meeting scheduling pipeline for smoother onboarding.",
     ],
   },
   {
@@ -26,7 +56,7 @@ export const workExperienceTimeline: TimelineItem[] = [
     ],
   },
   {
-    title: "A4R LLC | Freelance Developer",
+    title: "A4R LLC | Freelance Full Stack Developer",
     location: "Remote",
     year: "JAN 2022 - SEP 2022",
     timelineItems: [

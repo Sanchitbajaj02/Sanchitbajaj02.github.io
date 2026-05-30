@@ -1,5 +1,5 @@
 // import { CircleX } from "lucide-react";
-
+import Image from "next/image";
 export type InfoCard = {
   cardTitle: string;
   cardDescription: string;
@@ -70,7 +70,7 @@ export default function HomePage() {
               return (
                 <li className="service-item" key={idx}>
                   <div className="service-icon-box">
-                    <img
+                    <Image
                       src={card.cardImage}
                       alt="design icon"
                       width={50}
