@@ -2,33 +2,363 @@
 @tailwind components;
 @tailwind utilities;
 
+/*-----------------------------------*\
+  #THEME TOKENS — cohesive palette + typography
+\*-----------------------------------*/
+
+:root {
+  /* Surfaces */
+  --surface-0: hsl(240, 6%, 6%);
+  --surface-1: hsl(240, 4%, 10%);
+  --surface-2: hsl(240, 3%, 14%);
+  --surface-3: hsl(240, 2%, 20%);
+
+  /* Accent — warm amber/gold gradient (single source of truth) */
+  --accent: hsl(38, 95%, 62%);
+  --accent-soft: hsl(45, 100%, 72%);
+  --accent-gradient: linear-gradient(
+    135deg,
+    hsl(45, 100%, 72%) 0%,
+    hsl(28, 100%, 62%) 100%
+  );
+
+  /* Text */
+  --text-strong: hsl(0, 0%, 98%);
+  --text-base: hsl(0, 0%, 86%);
+  --text-muted: hsla(0, 0%, 86%, 0.65);
+
+  /* Borders */
+  --border-1: hsl(240, 2%, 22%);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 0.18s var(--ease-out);
+  --t-base: 0.28s var(--ease-out);
+  --t-slow: 0.45s var(--ease-out);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/*-----------------------------------*\
+  #UTILITIES — animations, hover, skeletons
+\*-----------------------------------*/
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-} */
+
+  .text-accent {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s var(--ease-out) both;
+  }
+
+  .hover-lift {
+    transition: transform var(--t-base), box-shadow var(--t-base),
+      border-color var(--t-base);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px hsla(0, 0%, 0%, 0.35);
+    border-color: var(--accent);
+  }
+
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-2);
+    border-radius: 12px;
+  }
+
+  .skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsla(0, 0%, 100%, 0.06) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: shimmer 1.4s infinite;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/*-----------------------------------*\
+  #COHESIVE OVERRIDES on legacy style.css
+\*-----------------------------------*/
+
+/* Unify accent across legacy variables */
+:root {
+  --orange-yellow-crayola: var(--accent-soft);
+  --vegas-gold: var(--accent);
+  --text-gradient-yellow: var(--accent-gradient);
+}
+
+/* Card / article polish */
+.sidebar,
+article {
+  border-color: var(--border-1) !important;
+  transition: border-color var(--t-base), box-shadow var(--t-base);
+}
+
+article.active {
+  animation: fadeInUp 0.55s var(--ease-out) both;
+}
+
+/* Navbar link micro-interaction */
+.navbar-link {
+  position: relative;
+  transition: color var(--t-fast);
+}
+
+.navbar-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  width: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width var(--t-base);
+}
+
+.navbar-link:hover::after,
+.navbar-link.active::after {
+  width: 60%;
+}
+
+/* Service card hover */
+.service-item {
+  transition: transform var(--t-base), border-color var(--t-base);
+}
+
+.service-item:hover {
+  transform: translateY(-3px);
+}
+
+.service-item:hover .service-icon-box img {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.service-icon-box img {
+  transition: transform var(--t-base);
+}
+
+/* Icon-box hover */
+.icon-box {
+  transition: transform var(--t-fast), color var(--t-fast);
+}
+
+.icon-box:hover {
+  transform: scale(1.05);
+}
+
+/* Contact / social link hover */
+.contact-link,
+.social-link {
+  transition: color var(--t-fast), transform var(--t-fast);
+}
+
+.contact-link:hover {
+  color: var(--accent-soft) !important;
+}
+
+.social-item .social-link:hover {
+  color: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+/*-----------------------------------*\
+  #RESUME TIMELINE — fixed + enhanced
+\*-----------------------------------*/
+
+.timeline-list {
+  position: relative;
+  margin-left: 45px;
+  padding-left: 0;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 4px 0;
+}
+
+.timeline-item:not(:last-child) {
+  margin-bottom: 28px;
+}
+
+/* Continuous gradient rail */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30px;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--accent-soft) 0%,
+    var(--border-1) 100%
+  );
+  border-radius: 2px;
+}
+
+.timeline-item:last-child::before {
+  background: linear-gradient(
+    to bottom,
+    var(--accent-soft) 0%,
+    transparent 100%
+  );
+}
+
+/* Dot marker */
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -36px;
+  height: 14px;
+  width: 14px;
+  background: var(--accent-gradient);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--surface-2), 0 0 12px hsla(38, 95%, 62%, 0.45);
+  transition: transform var(--t-base), box-shadow var(--t-base);
+}
+
+.timeline-item:hover::after {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 4px var(--surface-2), 0 0 18px hsla(38, 95%, 62%, 0.7);
+}
+
+.timeline-item-title {
+  color: var(--text-strong);
+  font-weight: 600;
+  letter-spacing: -0.15px;
+}
+
+.timeline-list > .timeline-item > span {
+  display: inline-block;
+  color: var(--accent-soft);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 3px 10px;
+  margin: 6px 0 10px;
+  background: hsla(45, 100%, 72%, 0.08);
+  border: 1px solid hsla(45, 100%, 72%, 0.25);
+  border-radius: 999px;
+}
+
+.timeline-text {
+  color: var(--text-base);
+  line-height: 1.65;
+  padding-left: 18px;
+}
+
+.timeline-text li {
+  list-style: disc;
+  margin-bottom: 6px;
+  transition: color var(--t-fast);
+}
+
+.timeline-text li:hover {
+  color: var(--text-strong);
+}
+
+@media (min-width: 580px) {
+  .timeline-list {
+    margin-left: 65px;
+  }
+  .timeline-item::before {
+    left: -40px;
+  }
+  .timeline-item::after {
+    left: -46px;
+    height: 16px;
+    width: 16px;
+  }
+}
+
+/*-----------------------------------*\
+  #PROJECT + BLOG hover polish
+\*-----------------------------------*/
+
+.project-img,
+.blog-banner-box {
+  transition: box-shadow var(--t-base);
+}
+
+.project-item > a:hover .project-img,
+.blog-post-item > a:hover .blog-banner-box {
+  box-shadow: 0 18px 40px hsla(0, 0%, 0%, 0.45);
+}
+
+.project-title {
+  transition: color var(--t-fast);
+}
+
+.project-item > a:hover .project-title {
+  color: var(--accent-soft);
+}
+
+/*-----------------------------------*\
+  #SCROLLBAR — themed
+\*-----------------------------------*/
+
+body::-webkit-scrollbar-thumb,
+.has-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--accent) !important;
+}

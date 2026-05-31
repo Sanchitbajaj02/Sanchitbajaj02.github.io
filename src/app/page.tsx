@@ -68,7 +68,11 @@ export default function HomePage() {
           <ul className="service-list">
             {whatIamDoing.map((card: InfoCard, idx: number) => {
               return (
-                <li className="service-item" key={idx}>
+                <li
+                  className="service-item hover-lift fade-in-up"
+                  style={{ animationDelay: `${idx * 90}ms` }}
+                  key={idx}
+                >
                   <div className="service-icon-box">
                     <Image
                       src={card.cardImage}

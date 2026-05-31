@@ -45,7 +45,7 @@ export default async function BlogPage() {
           {posts &&
             posts.map((post: Post, idx: number) => {
               return (
-                <li className="blog-post-item" key={idx}>
+                <li className="blog-post-item hover-lift fade-in-up" style={{ animationDelay: `${idx * 70}ms` }} key={idx}>
                   <Link
                     href={`https://${NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST}/${post.node.slug}`}
                     target="_blank"
