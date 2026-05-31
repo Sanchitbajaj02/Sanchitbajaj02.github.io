@@ -290,7 +290,35 @@ article.active {
   letter-spacing: -0.15px;
 }
 
-.timeline-list > .timeline-item > span {
+.timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+
+.timeline-pill {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-soft);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  background: hsla(45, 100%, 72%, 0.08);
+  border: 1px solid hsla(45, 100%, 72%, 0.25);
+  border-radius: 999px;
+  line-height: 1.4;
+}
+
+.timeline-pill--muted {
+  color: var(--text-muted);
+  background: hsla(0, 0%, 100%, 0.04);
+  border-color: var(--border-1);
+}
+
+/* Legacy fallback (in case any timeline still uses raw <span>) */
+.timeline-list > .timeline-item > span:not([class]) {
   display: inline-block;
   color: var(--accent-soft);
   font-size: 13px;

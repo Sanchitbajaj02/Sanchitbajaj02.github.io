@@ -1,6 +1,13 @@
-import { Suspense } from "react";
 import dynamic from "next/dynamic";
-import { BookOpen, GraduationCap, CircleCheckBig, Download, Wrench } from "lucide-react";
+import {
+  BookOpen,
+  GraduationCap,
+  CircleCheckBig,
+  Download,
+  Wrench,
+  CalendarDays,
+  MapPin,
+} from "lucide-react";
 import type { Metadata } from "next";
 import { skills } from "@/static/skillItems";
 import { SkillItem, TimelineItem } from "@/types";
@@ -27,6 +34,25 @@ const SkillChip = ({ skill }: { skill: SkillItem }) => (
   </div>
 );
 
+const TimelineMeta = ({
+  location,
+  year,
+}: {
+  location: string;
+  year: string;
+}) => (
+  <div className="timeline-meta">
+    <span className="timeline-pill">
+      <CalendarDays size={12} />
+      {year}
+    </span>
+    <span className="timeline-pill timeline-pill--muted">
+      <MapPin size={12} />
+      {location}
+    </span>
+  </div>
+);
+
 const Timeline = ({
   title,
   icon,
@@ -43,14 +69,16 @@ const Timeline = ({
     </div>
 
     <ol className="timeline-list">
-      {items.map((timeline, idx) => (
-        <li className="timeline-item fade-in-up" key={idx} style={{ animationDelay: `${idx * 80}ms` }}>
-          <h4 className="h4 timeline-item-title">{timeline.title}</h4>
-          <span>
-            {timeline.location} · {timeline.year}
-          </span>
+      {items.map((entry, idx) => (
+        <li
+          className="timeline-item fade-in-up"
+          key={idx}
+          style={{ animationDelay: `${idx * 80}ms` }}
+        >
+          <h4 className="h4 timeline-item-title">{entry.title}</h4>
+          <TimelineMeta location={entry.location} year={entry.year} />
           <ul className="timeline-text">
-            {timeline.timelineItems.map((item, i) => (
+            {entry.timelineItems.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
           </ul>
@@ -95,7 +123,7 @@ export default function ResumePage() {
           <div className="icon-box">
             <Wrench size={18} />
           </div>
-          <h3 className="h3 skills-title font-semibold">My Skills</h3>
+          <h3 className="h3 font-semibold">My Skills</h3>
         </div>
 
         <ul className="service-list">
@@ -106,10 +134,8 @@ export default function ResumePage() {
       </section>
 
       <section className="tech-stack my-8">
-        <h3 className="h3 skills-title font-semibold">Technology Stack</h3>
-        <Suspense fallback={<TechStackSkeleton />}>
-          <TechStack />
-        </Suspense>
+        <h3 className="h3 font-semibold mb-6">Technology Stack</h3>
+        <TechStack />
       </section>
     </article>
   );
