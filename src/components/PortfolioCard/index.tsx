@@ -7,7 +7,7 @@ import { Eye } from "lucide-react";
 export const PortfolioCard = ({ projectItem }: { projectItem: Project }) => {
   return (
     <li
-      className="project-item active"
+      className="project-item active hover-lift fade-in-up"
       data-filter-item
       data-category={projectItem.tabId.toLowerCase()}
     >

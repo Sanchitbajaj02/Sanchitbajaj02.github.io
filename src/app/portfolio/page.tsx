@@ -5,9 +5,6 @@ import { tabList } from "@/static/tabList";
 import { ChevronDown } from "lucide-react";
 import { projectList } from "@/static/projectList";
 
-
-
-
 export default function PortfolioPage() {
   const [activeTab, setActiveTab] = useState<string>("all");
 

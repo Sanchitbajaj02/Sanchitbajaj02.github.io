@@ -1,38 +1,21 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { request } from "graphql-request";
 import type { Metadata } from "next";
 
-import {
-  API_ENDPOINT,
-  GET_ALL_POSTS,
-  NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST,
-} from "@/lib/graphql";
-import { PostsResponse, Post, Tag } from "@/types";
+import { Post } from "@/types";
+
+import { formatDate } from "@/lib/format-date";
+import { getBlogs } from "@/lib/get-blog";
 
 export const revalidate = 86400; // revalidate at most every day
-
-const fetchPosts = async (): Promise<PostsResponse | null> => {
-  "use server";
-  const data: PostsResponse = await request(API_ENDPOINT, GET_ALL_POSTS);
-
-  if (!data || !data.publication || !data.publication.posts) {
-    return null;
-  }
-
-  return data;
-};
 
 export const metadata: Metadata = {
   title: "Blogs - Sanchit Bajaj",
 };
 
-
 export default async function BlogPage() {
-  const apiData: PostsResponse | null = await fetchPosts();
-
-  const posts = apiData?.publication.posts.edges;
+  const posts = await getBlogs();
 
   return (
     <article className="blog active" data-page="blog">
@@ -45,16 +28,16 @@ export default async function BlogPage() {
           {posts &&
             posts.map((post: Post, idx: number) => {
               return (
-                <li className="blog-post-item" key={idx}>
-                  <Link
-                    href={`https://${NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST}/${post.node.slug}`}
-                    target="_blank"
-                    tabIndex={1}
-                  >
+                <li
+                  className="blog-post-item hover-lift fade-in-up"
+                  style={{ animationDelay: `${idx * 70}ms` }}
+                  key={idx}
+                >
+                  <Link href={post.url} target="_blank" tabIndex={1}>
                     <figure className="blog-banner-box">
                       <Image
-                        src={post.node.coverImage.url}
-                        alt={post.node.title}
+                        src={post.social_image}
+                        alt={post.title}
                         width={2000}
                         height={1000}
                         loading="lazy"
@@ -67,28 +50,23 @@ export default async function BlogPage() {
 
                         {/* <span className="dot"></span> */}
 
-                        <time dateTime={post.node.publishedAt}>
-                          {new Date(post.node.publishedAt).toLocaleDateString(
-                            "en-IN",
-                            {
-                              year: "numeric",
-                              month: "short",
-                              day: "numeric",
-                            }
-                          )}
+                        <time dateTime={post.published_at}>
+                          {formatDate(post.published_at)}
                         </time>
                       </div>
 
-                      <h4 className="h4 blog-item-title">{post.node.title}</h4>
+                      <h4 className="h4 blog-item-title">{post.title}</h4>
 
                       <div className="flex flex-row gap-2 flex-wrap">
-                      {post.node.tags && post.node.tags.map((tag: Tag) => {
-                        return (
-                          <small className="blog-text" key={tag.id}>
-                            #{tag.name} 
-                          </small>
-                        );
-                      })}
+                        {post.tag_list &&
+                          post.tag_list.length > 0 &&
+                          post.tag_list.map((tag: string, i: number) => {
+                            return (
+                              <small className="blog-text" key={i}>
+                                #{tag}
+                              </small>
+                            );
+                          })}
                       </div>
                     </div>
                   </Link>

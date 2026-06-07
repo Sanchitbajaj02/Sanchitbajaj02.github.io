@@ -1,8 +1,9 @@
 import "@/styles/globals.css";
 import "@/styles/style.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import MainGridLayout from "@/components/layouts/MainGridLayout";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Home - Sanchit Bajaj",
@@ -34,6 +35,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
 const font = Poppins({
   weight: ["300", "400", "500", "600", "800"],
   subsets: ["latin"],
@@ -47,6 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`antialiased ${font.className}`}>
+        <SmoothScroll />
         <MainGridLayout>{children}</MainGridLayout>
       </body>
     </html>

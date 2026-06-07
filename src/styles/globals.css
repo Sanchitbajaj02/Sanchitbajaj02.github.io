@@ -1,34 +1,428 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/*-----------------------------------*\
+  #TAILWIND v4 THEME — single source of truth
+\*-----------------------------------*/
+
+@theme {
+  /* Surfaces */
+  --color-surface-0: hsl(240, 6%, 6%);
+  --color-surface-1: hsl(240, 4%, 10%);
+  --color-surface-2: hsl(240, 3%, 14%);
+  --color-surface-3: hsl(240, 2%, 20%);
+
+  /* Accent */
+  --color-accent: hsl(38, 95%, 62%);
+  --color-accent-soft: hsl(45, 100%, 72%);
+
+  /* Text */
+  --color-ink-strong: hsl(0, 0%, 98%);
+  --color-ink-base: hsl(0, 0%, 86%);
+  --color-ink-muted: hsla(0, 0%, 86%, 0.65);
+
+  /* Borders */
+  --color-border: hsl(240, 2%, 22%);
+
+  /* Typography (mirrors legacy --fs-* so style.css responsive sizing still cascades) */
+  --font-sans: var(--ff-poppins), "Poppins", sans-serif;
+
+  --text-fs-1: var(--fs-1);
+  --text-fs-2: var(--fs-2);
+  --text-fs-3: var(--fs-3);
+  --text-fs-4: var(--fs-4);
+  --text-fs-5: var(--fs-5);
+  --text-fs-6: var(--fs-6);
+  --text-fs-7: var(--fs-7);
+  --text-fs-8: var(--fs-8);
+
+  /* Radii / shadows */
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 18px 40px hsla(0, 0%, 0%, 0.35);
+  --shadow-glow: 0 0 18px hsla(38, 95%, 62%, 0.55);
+
+  /* Easing + animations */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-in-up: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/*-----------------------------------*\
+  #LEGACY ALIASES — runtime vars consumed by style.css
+\*-----------------------------------*/
+
+:root {
+  --accent: var(--color-accent);
+  --accent-soft: var(--color-accent-soft);
+  --accent-gradient: linear-gradient(
+    135deg,
+    hsl(45, 100%, 72%) 0%,
+    hsl(28, 100%, 62%) 100%
+  );
+
+  --surface-0: var(--color-surface-0);
+  --surface-1: var(--color-surface-1);
+  --surface-2: var(--color-surface-2);
+  --surface-3: var(--color-surface-3);
+
+  --text-strong: var(--color-ink-strong);
+  --text-base: var(--color-ink-base);
+  --text-muted: var(--color-ink-muted);
+
+  --border-1: var(--color-border);
+
+  --ease-out: var(--ease-smooth);
+  --t-fast: 0.18s var(--ease-smooth);
+  --t-base: 0.28s var(--ease-smooth);
+  --t-slow: 0.45s var(--ease-smooth);
+
+  /* Unify accent across legacy style.css variables */
+  --orange-yellow-crayola: var(--color-accent-soft);
+  --vegas-gold: var(--color-accent);
+  --text-gradient-yellow: var(--accent-gradient);
+}
+
+/*-----------------------------------*\
+  #BASE
+\*-----------------------------------*/
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/*-----------------------------------*\
+  #UTILITIES — animations, hover, skeletons
+\*-----------------------------------*/
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-accent-grad {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility fade-in-up {
+  animation: fadeInUp 0.6s var(--ease-smooth) both;
+}
+
+@utility hover-lift {
+  transition: transform var(--t-base), box-shadow var(--t-base),
+    border-color var(--t-base);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px hsla(0, 0%, 0%, 0.35);
+    border-color: var(--accent);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@utility skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-radius: 12px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsla(0, 0%, 100%, 0.06) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: shimmer 1.4s infinite;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/*-----------------------------------*\
+  #COHESIVE OVERRIDES on legacy style.css
+\*-----------------------------------*/
+
+.sidebar,
+article {
+  border-color: var(--border-1) !important;
+  transition: border-color var(--t-base), box-shadow var(--t-base);
+}
+
+article.active {
+  animation: fadeInUp 0.55s var(--ease-smooth) both;
+}
+
+/* Navbar link micro-interaction */
+.navbar-link {
+  position: relative;
+  transition: color var(--t-fast);
+}
+
+.navbar-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  width: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width var(--t-base);
+}
+
+.navbar-link:hover::after,
+.navbar-link.active::after {
+  width: 60%;
+}
+
+/* Service card */
+.service-item {
+  transition: transform var(--t-base), border-color var(--t-base);
+}
+
+.service-item:hover {
+  transform: translateY(-3px);
+}
+
+.service-item:hover .service-icon-box img {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.service-icon-box img {
+  transition: transform var(--t-base);
+}
+
+/* Icon-box */
+.icon-box {
+  transition: transform var(--t-fast), color var(--t-fast);
+}
+
+.icon-box:hover {
+  transform: scale(1.05);
+}
+
+/* Contact / social */
+.contact-link,
+.social-link {
+  transition: color var(--t-fast), transform var(--t-fast);
+}
+
+.contact-link:hover {
+  color: var(--accent-soft) !important;
+}
+
+.social-item .social-link:hover {
+  color: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+/*-----------------------------------*\
+  #RESUME TIMELINE
+\*-----------------------------------*/
+
+.timeline-list {
+  position: relative;
+  margin-left: 45px;
+  padding-left: 0;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 4px 0;
+}
+
+.timeline-item:not(:last-child) {
+  margin-bottom: 28px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30px;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--accent-soft) 0%,
+    var(--border-1) 100%
+  );
+  border-radius: 2px;
+}
+
+.timeline-item:last-child::before {
+  background: linear-gradient(
+    to bottom,
+    var(--accent-soft) 0%,
+    transparent 100%
+  );
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -36px;
+  height: 14px;
+  width: 14px;
+  background: var(--accent-gradient);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--surface-2), 0 0 12px hsla(38, 95%, 62%, 0.45);
+  transition: transform var(--t-base), box-shadow var(--t-base);
+}
+
+.timeline-item:hover::after {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 4px var(--surface-2), 0 0 18px hsla(38, 95%, 62%, 0.7);
+}
+
+/* TODO: commenting for future */
+/* .timeline-item-title {
+  color: var(--text-strong);
+  font-weight: 600;
+  letter-spacing: -0.15px;
 } */
+
+.timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+
+.timeline-pill {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-soft);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  background: hsla(45, 100%, 72%, 0.08);
+  border: 1px solid hsla(45, 100%, 72%, 0.25);
+  border-radius: 999px;
+  line-height: 1.4;
+}
+
+.timeline-pill--muted {
+  color: var(--text-muted);
+  background: hsla(0, 0%, 100%, 0.04);
+  border-color: var(--border-1);
+}
+
+.timeline-list > .timeline-item > span:not([class]) {
+  display: inline-block;
+  color: var(--accent-soft);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 3px 10px;
+  margin: 6px 0 10px;
+  background: hsla(45, 100%, 72%, 0.08);
+  border: 1px solid hsla(45, 100%, 72%, 0.25);
+  border-radius: 999px;
+}
+
+.timeline-text {
+  color: var(--text-base);
+  line-height: 1.65;
+  padding-left: 18px;
+}
+
+.timeline-text li {
+  list-style: disc;
+  margin-bottom: 6px;
+  transition: color var(--t-fast);
+}
+
+.timeline-text li:hover {
+  color: var(--text-strong);
+}
+
+@media (min-width: 580px) {
+  .timeline-list {
+    margin-left: 65px;
+  }
+  .timeline-item::before {
+    left: -40px;
+  }
+  .timeline-item::after {
+    left: -46px;
+    height: 16px;
+    width: 16px;
+  }
+}
+
+/*-----------------------------------*\
+  #PROJECT + BLOG hover polish
+\*-----------------------------------*/
+
+.project-img,
+.blog-banner-box {
+  transition: box-shadow var(--t-base);
+}
+
+.project-item > a:hover .project-img,
+.blog-post-item > a:hover .blog-banner-box {
+  box-shadow: 0 18px 40px hsla(0, 0%, 0%, 0.45);
+}
+
+.project-title {
+  transition: color var(--t-fast);
+}
+
+.project-item > a:hover .project-title {
+  color: var(--accent-soft);
+}
+
+/*-----------------------------------*\
+  #SCROLLBAR
+\*-----------------------------------*/
+
+body::-webkit-scrollbar-thumb,
+.has-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--accent) !important;
+}
