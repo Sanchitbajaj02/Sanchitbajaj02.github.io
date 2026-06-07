@@ -6,6 +6,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.hashnode.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.shields.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media2.dev.to',
+      }
     ]
   },
   eslint: {
