@@ -320,11 +320,12 @@ article.active {
   box-shadow: 0 0 0 4px var(--surface-2), 0 0 18px hsla(38, 95%, 62%, 0.7);
 }
 
-.timeline-item-title {
+/* TODO: commenting for future */
+/* .timeline-item-title {
   color: var(--text-strong);
   font-weight: 600;
   letter-spacing: -0.15px;
-}
+} */
 
 .timeline-meta {
   display: flex;

@@ -7,6 +7,7 @@ import {
   Wrench,
   CalendarDays,
   MapPin,
+  SettingsIcon
 } from "lucide-react";
 import type { Metadata } from "next";
 import { skills } from "@/static/skillItems";
@@ -142,8 +143,14 @@ export default function ResumePage() {
         </ul>
       </section>
 
-      <section className="tech-stack my-8">
-        <h3 className="h3 font-semibold mb-6">Technology Stack</h3>
+      <section className="skill my-8">
+         <div className="title-wrapper">
+          <div className="icon-box">
+            <SettingsIcon size={18} />
+          </div>
+          <h3 className="h3 font-semibold">Technology Stack</h3>
+        </div>
+        
         <TechStack />
       </section>
     </article>

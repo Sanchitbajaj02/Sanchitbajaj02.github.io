@@ -9,6 +9,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'img.shields.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media2.dev.to',
       }
     ]
   },

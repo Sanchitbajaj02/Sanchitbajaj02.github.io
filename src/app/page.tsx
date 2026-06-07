@@ -51,14 +51,12 @@ export default function HomePage() {
         <section className="about-text">
           <h4 className="h4 timeline-item-title">👋 Hey, I'm Sanchit Bajaj!</h4>
           <p className="timeline-item-title">
-            Results-driven{" "}
-            <strong>Software Engineer with 2+ years of experience</strong>{" "}
+            Results-driven Software Engineer with 3+ years of experience
             developing scalable applications, optimizing system performance
             (improving response times by 50%), and enhancing security.
-            Proficient in web development technologies, including{" "}
-            <strong>JavaScript</strong> (React, Next.js, Node.js, Express.js),
-            with a strong understanding of{" "}
-            <strong>SQL & NoSQL databases.</strong>
+            Proficient in web development technologies, including JavaScript
+            (React, Next.js, Node.js, Express.js), with a strong understanding
+            of SQL & NoSQL databases.
           </p>
         </section>
 
