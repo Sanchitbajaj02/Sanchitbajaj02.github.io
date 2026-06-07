@@ -99,7 +99,7 @@ export default function ResumePage() {
         <h2 className="h2 article-title">My Resume</h2>
         <div className="icon-box">
           <a
-            href="docs/Sanchit's%20resume.pdf"
+            href="docs/Sanchit_Resume.pdf"
             title="Download Resume"
             role="button"
             target="_blank"
