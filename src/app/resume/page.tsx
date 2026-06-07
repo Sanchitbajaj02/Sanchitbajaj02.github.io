@@ -11,7 +11,10 @@ import {
 import type { Metadata } from "next";
 import { skills } from "@/static/skillItems";
 import { SkillItem, TimelineItem } from "@/types";
-import { workExperienceTimeline } from "@/static/workExperienceTimeline";
+import {
+  professionalExperienceTimeline,
+  freelanceExperienceTimeline,
+} from "@/static/workExperienceTimeline";
 import { studyTimeline } from "@/static/studyTimeline";
 import { TechStackSkeleton } from "@/components/TechStack";
 
@@ -107,9 +110,15 @@ export default function ResumePage() {
       </header>
 
       <Timeline
-        title="Employment Experience"
+        title="Professional Experience"
         icon={<BookOpen size={18} />}
-        items={workExperienceTimeline}
+        items={professionalExperienceTimeline}
+      />
+
+      <Timeline
+        title="Freelance Experience"
+        icon={<BookOpen size={18} />}
+        items={freelanceExperienceTimeline}
       />
 
       <Timeline

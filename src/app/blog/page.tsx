@@ -13,15 +13,15 @@ import { PostsResponse, Post, Tag } from "@/types";
 
 export const revalidate = 86400; // revalidate at most every day
 
-const fetchPosts = async (): Promise<PostsResponse | null> => {
+const fetchPosts = async (): Promise<null> => {
   "use server";
-  const data: PostsResponse = await request(API_ENDPOINT, GET_ALL_POSTS);
+  // const data: PostsResponse = await request(API_ENDPOINT, GET_ALL_POSTS);
 
-  if (!data || !data.publication || !data.publication.posts) {
-    return null;
-  }
+  // if (!data || !data.publication || !data.publication.posts) {
+  //   return null;
+  // }
 
-  return data;
+  return null;
 };
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   const apiData: PostsResponse | null = await fetchPosts();
 
-  const posts = apiData?.publication.posts.edges;
+  const posts = apiData?.publication?.posts?.edges;
 
   return (
     <article className="blog active" data-page="blog">

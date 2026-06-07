@@ -1,41 +1,106 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /*-----------------------------------*\
-  #THEME TOKENS — cohesive palette + typography
+  #TAILWIND v4 THEME — single source of truth
+\*-----------------------------------*/
+
+@theme {
+  /* Surfaces */
+  --color-surface-0: hsl(240, 6%, 6%);
+  --color-surface-1: hsl(240, 4%, 10%);
+  --color-surface-2: hsl(240, 3%, 14%);
+  --color-surface-3: hsl(240, 2%, 20%);
+
+  /* Accent */
+  --color-accent: hsl(38, 95%, 62%);
+  --color-accent-soft: hsl(45, 100%, 72%);
+
+  /* Text */
+  --color-ink-strong: hsl(0, 0%, 98%);
+  --color-ink-base: hsl(0, 0%, 86%);
+  --color-ink-muted: hsla(0, 0%, 86%, 0.65);
+
+  /* Borders */
+  --color-border: hsl(240, 2%, 22%);
+
+  /* Typography (mirrors legacy --fs-* so style.css responsive sizing still cascades) */
+  --font-sans: var(--ff-poppins), "Poppins", sans-serif;
+
+  --text-fs-1: var(--fs-1);
+  --text-fs-2: var(--fs-2);
+  --text-fs-3: var(--fs-3);
+  --text-fs-4: var(--fs-4);
+  --text-fs-5: var(--fs-5);
+  --text-fs-6: var(--fs-6);
+  --text-fs-7: var(--fs-7);
+  --text-fs-8: var(--fs-8);
+
+  /* Radii / shadows */
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 18px 40px hsla(0, 0%, 0%, 0.35);
+  --shadow-glow: 0 0 18px hsla(38, 95%, 62%, 0.55);
+
+  /* Easing + animations */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-in-up: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/*-----------------------------------*\
+  #LEGACY ALIASES — runtime vars consumed by style.css
 \*-----------------------------------*/
 
 :root {
-  /* Surfaces */
-  --surface-0: hsl(240, 6%, 6%);
-  --surface-1: hsl(240, 4%, 10%);
-  --surface-2: hsl(240, 3%, 14%);
-  --surface-3: hsl(240, 2%, 20%);
-
-  /* Accent — warm amber/gold gradient (single source of truth) */
-  --accent: hsl(38, 95%, 62%);
-  --accent-soft: hsl(45, 100%, 72%);
+  --accent: var(--color-accent);
+  --accent-soft: var(--color-accent-soft);
   --accent-gradient: linear-gradient(
     135deg,
     hsl(45, 100%, 72%) 0%,
     hsl(28, 100%, 62%) 100%
   );
 
-  /* Text */
-  --text-strong: hsl(0, 0%, 98%);
-  --text-base: hsl(0, 0%, 86%);
-  --text-muted: hsla(0, 0%, 86%, 0.65);
+  --surface-0: var(--color-surface-0);
+  --surface-1: var(--color-surface-1);
+  --surface-2: var(--color-surface-2);
+  --surface-3: var(--color-surface-3);
 
-  /* Borders */
-  --border-1: hsl(240, 2%, 22%);
+  --text-strong: var(--color-ink-strong);
+  --text-base: var(--color-ink-base);
+  --text-muted: var(--color-ink-muted);
 
-  /* Motion */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --t-fast: 0.18s var(--ease-out);
-  --t-base: 0.28s var(--ease-out);
-  --t-slow: 0.45s var(--ease-out);
+  --border-1: var(--color-border);
+
+  --ease-out: var(--ease-smooth);
+  --t-fast: 0.18s var(--ease-smooth);
+  --t-base: 0.28s var(--ease-smooth);
+  --t-slow: 0.45s var(--ease-smooth);
+
+  /* Unify accent across legacy style.css variables */
+  --orange-yellow-crayola: var(--color-accent-soft);
+  --vegas-gold: var(--color-accent);
+  --text-gradient-yellow: var(--accent-gradient);
 }
+
+/*-----------------------------------*\
+  #BASE
+\*-----------------------------------*/
 
 * {
   margin: 0;
@@ -69,41 +134,39 @@ html.lenis body {
   #UTILITIES — animations, hover, skeletons
 \*-----------------------------------*/
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@utility text-balance {
+  text-wrap: balance;
+}
 
-  .text-accent {
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+@utility text-accent-grad {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-  .fade-in-up {
-    animation: fadeInUp 0.6s var(--ease-out) both;
-  }
+@utility fade-in-up {
+  animation: fadeInUp 0.6s var(--ease-smooth) both;
+}
 
-  .hover-lift {
-    transition: transform var(--t-base), box-shadow var(--t-base),
-      border-color var(--t-base);
-  }
+@utility hover-lift {
+  transition: transform var(--t-base), box-shadow var(--t-base),
+    border-color var(--t-base);
 
-  .hover-lift:hover {
+  &:hover {
     transform: translateY(-3px);
     box-shadow: 0 18px 40px hsla(0, 0%, 0%, 0.35);
     border-color: var(--accent);
   }
+}
 
-  .skeleton {
-    position: relative;
-    overflow: hidden;
-    background: var(--surface-2);
-    border-radius: 12px;
-  }
+@utility skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-radius: 12px;
 
-  .skeleton::after {
+  &::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -118,35 +181,10 @@ html.lenis body {
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
 /*-----------------------------------*\
   #COHESIVE OVERRIDES on legacy style.css
 \*-----------------------------------*/
 
-/* Unify accent across legacy variables */
-:root {
-  --orange-yellow-crayola: var(--accent-soft);
-  --vegas-gold: var(--accent);
-  --text-gradient-yellow: var(--accent-gradient);
-}
-
-/* Card / article polish */
 .sidebar,
 article {
   border-color: var(--border-1) !important;
@@ -154,7 +192,7 @@ article {
 }
 
 article.active {
-  animation: fadeInUp 0.55s var(--ease-out) both;
+  animation: fadeInUp 0.55s var(--ease-smooth) both;
 }
 
 /* Navbar link micro-interaction */
@@ -181,7 +219,7 @@ article.active {
   width: 60%;
 }
 
-/* Service card hover */
+/* Service card */
 .service-item {
   transition: transform var(--t-base), border-color var(--t-base);
 }
@@ -198,7 +236,7 @@ article.active {
   transition: transform var(--t-base);
 }
 
-/* Icon-box hover */
+/* Icon-box */
 .icon-box {
   transition: transform var(--t-fast), color var(--t-fast);
 }
@@ -207,7 +245,7 @@ article.active {
   transform: scale(1.05);
 }
 
-/* Contact / social link hover */
+/* Contact / social */
 .contact-link,
 .social-link {
   transition: color var(--t-fast), transform var(--t-fast);
@@ -223,7 +261,7 @@ article.active {
 }
 
 /*-----------------------------------*\
-  #RESUME TIMELINE — fixed + enhanced
+  #RESUME TIMELINE
 \*-----------------------------------*/
 
 .timeline-list {
@@ -241,7 +279,6 @@ article.active {
   margin-bottom: 28px;
 }
 
-/* Continuous gradient rail */
 .timeline-item::before {
   content: "";
   position: absolute;
@@ -265,7 +302,6 @@ article.active {
   );
 }
 
-/* Dot marker */
 .timeline-item::after {
   content: "";
   position: absolute;
@@ -317,7 +353,6 @@ article.active {
   border-color: var(--border-1);
 }
 
-/* Legacy fallback (in case any timeline still uses raw <span>) */
 .timeline-list > .timeline-item > span:not([class]) {
   display: inline-block;
   color: var(--accent-soft);
@@ -383,7 +418,7 @@ article.active {
 }
 
 /*-----------------------------------*\
-  #SCROLLBAR — themed
+  #SCROLLBAR
 \*-----------------------------------*/
 
 body::-webkit-scrollbar-thumb,
